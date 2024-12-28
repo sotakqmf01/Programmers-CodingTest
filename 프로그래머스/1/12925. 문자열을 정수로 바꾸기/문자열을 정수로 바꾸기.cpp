@@ -6,14 +6,17 @@ using namespace std;
 int solution(string s) {
     int answer = 0;
     int flag = 1;
+    int i = 0;
     
-    
-    for(int i = 0; i<s.length(); i++){
-        if(s[i] == '+')
-            flag = 1;
-        else if(s[i] == '-')
-            flag = -1;
-        else
+    if(s[0] == '+'){
+        flag = 1;
+        i = 1;
+    }
+    if(s[0] == '-'){
+        flag = -1;
+        i = 1;
+    }
+    for(i; i<s.length(); i++){
             answer = answer*10 + (s[i]-'0');  
     }
     
