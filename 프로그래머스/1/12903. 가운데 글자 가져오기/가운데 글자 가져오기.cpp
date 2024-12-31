@@ -12,6 +12,8 @@ string solution(string s) {
     }
     else{
         answer = s.substr(len/2 - 1, 2);
+        //answer = s[len/2-1];
+        //answer += s[len/2];
     }
     
     
