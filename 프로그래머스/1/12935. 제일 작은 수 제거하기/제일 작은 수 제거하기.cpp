@@ -13,10 +13,10 @@ vector<int> solution(vector<int> arr) {
         answer.push_back(-1);
     }
     else{
-        for(vector<int>::iterator it = arr.begin(); it != arr.end()-1; it++){
-            if( min > *(it+1) ){
-                min = *(it+1);
-                minit = it+1;
+        for(vector<int>::iterator it = arr.begin()+1; it != arr.end(); it++){
+            if( min > *(it) ){
+                min = *(it);
+                minit = it;
             }
         }
         arr.erase(minit);
