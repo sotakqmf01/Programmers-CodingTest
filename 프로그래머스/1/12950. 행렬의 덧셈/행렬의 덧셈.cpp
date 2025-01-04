@@ -4,10 +4,6 @@
 using namespace std;
 
 vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2) {
-    int a;
-    int b;
-    int c;
-    
     vector<vector<int>> answer = arr1;
     
     int rows = arr1.size();
