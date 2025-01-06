@@ -15,7 +15,7 @@ vector<int> solution(int n, int m) {
     
     int num = n < m ? n : m;
     
-    // 연제법제법
+    // 연제법
     //int gcd_n = n;
     //int gcd_m = m;
     //int gcd = 1;
