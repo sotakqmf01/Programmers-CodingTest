@@ -18,6 +18,7 @@ string solution(string s) {
                 answer += toupper(s[i]);
             else
                 answer += tolower(s[i]);
+            // j++를 for문의 증감식이 있는 곳에 넣어도 됨
             j++;
         }
     }
