@@ -14,13 +14,17 @@ int solution(int n) {
         n /= 3;
     }
     
-    num = stoll(str);
-    int exp = 0;
-    while(num > 0){
-        answer = answer + (num % 10) * pow(3, exp);
-        num /= 10;
-        exp++;
-    }
+    for(char c : str) 
+        answer = answer * 3 + (c - '0');
+    
+    //num = stoll(str);
+    
+    //int exp = 0;
+    //while(num > 0){
+    //    answer = answer + (num % 10) * pow(3, exp);
+    //    num /= 10;
+    //    exp++;
+    //}
     
     return answer;
 }
