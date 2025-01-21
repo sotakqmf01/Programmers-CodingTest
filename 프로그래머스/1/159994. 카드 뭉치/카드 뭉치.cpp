@@ -7,6 +7,7 @@ string solution(vector<string> cards1, vector<string> cards2, vector<string> goa
     int idx1 = 0;
     int idx2 = 0;
 
+    // 카드 뭉치를 번갈아가며 쓰라는 말이 없는데 왜 그렇게 생각한거지?
     // && idx1 < idx2 + 1 
     // && idx2 < idx1 + 1 
     for(string& goalStr : goal){
@@ -20,7 +21,6 @@ string solution(vector<string> cards1, vector<string> cards2, vector<string> goa
     
     return "Yes";  
   
-    
     //string answer = "";
     //string answer2 = "";
     //string goalStr = "";
