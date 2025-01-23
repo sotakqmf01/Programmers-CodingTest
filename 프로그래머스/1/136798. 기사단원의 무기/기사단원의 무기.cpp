@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 #include <cmath>
-
 using namespace std;
 
 int divisor(int num)
@@ -16,7 +15,11 @@ int divisor(int num)
         }
     }
     
-    if(floor(sqrt(num)) == sqrt(num))
+    //if(num % (int)sqrt(num == 0)) - 이거는 제대로 작동 안함(2나 3일때 생각해보기)
+    // 실수형은 부동 소수점 오차가 있을 수 있어 비교를 자제해야겠다는 생각이 갑자기 듦
+    //if((double)(num / (int)sqrt(num)) == sqrt(num))
+    //if(floor(sqrt(num)) == sqrt(num))
+    if((int)sqrt(num) * (int)sqrt(num) == num)
     {
         count++;
     }
