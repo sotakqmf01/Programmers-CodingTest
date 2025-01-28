@@ -7,6 +7,9 @@ using namespace std;
 int solution(int n, vector<int> lost, vector<int> reserve) {
     int answer = n - lost.size();
     
+    // 정렬을 해놓지 않으면 최대로 수업을 들을 수 있는 경우가 아닐 수도 있음
+    // 입력값 〉 5, [4, 2], [3, 5]
+    // 기댓값 〉 5
     sort(lost.begin(), lost.end());
     sort(reserve.begin(), reserve.end());
     
