@@ -17,7 +17,6 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
         vector<int>::iterator it = find(reserve.begin(), reserve.end(), lostFriend);
         if(it != reserve.end())
         {
-            cout << "i have 여벌" << endl;
             ++answer;
             reserve.erase(it);
         }
@@ -28,7 +27,6 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
             it = find(reserve.begin(), reserve.end(), lostFriend-1);
             if(it != reserve.end())
             {
-                cout << "-1 friend has 여벌" << endl;
                 // 친구도 도난당하지 않은 경우에만 빌려줌
                 vector<int>::iterator it2 = find(lost.begin(), lost.end(), lostFriend-1);
                 if(it2 == lost.end())
@@ -43,7 +41,6 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
             it = find(reserve.begin(), reserve.end(), lostFriend+1);
             if(it != reserve.end())
             {
-                cout << "+1 friend has 여벌" << endl;
                 // 친구도 도난당하지 않은 경우에만 빌려줌
                 vector<int>::iterator it2 = find(lost.begin(), lost.end(), lostFriend+1);
                 if(it2 == lost.end())
