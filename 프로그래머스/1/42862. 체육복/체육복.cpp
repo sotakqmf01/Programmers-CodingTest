@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
@@ -21,33 +20,33 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
             reserve.erase(it);
         }
         else
-        {
+        { 
             // 여벌이 없는 경우
-            // 앞 번호 친구가 여벌이 있는 경우
-            it = find(reserve.begin(), reserve.end(), lostFriend-1);
-            if(it != reserve.end())
+			// 앞 번호 친구가 여벌이 있는 경우
+            it = find(reserve.begin(), reserve.end(), lostFriend - 1);
+            if (it != reserve.end())
             {
-                // 친구도 도난당하지 않은 경우에만 빌려줌
-                vector<int>::iterator it2 = find(lost.begin(), lost.end(), lostFriend-1);
-                if(it2 == lost.end())
-                {
-                    ++answer;
-                    reserve.erase(it);
-                    continue;
-                }
+	            // 친구도 도난당하지 않은 경우에만 빌려줌
+	            vector<int>::iterator it2 = find(lost.begin(), lost.end(), lostFriend - 1);
+	            if (it2 == lost.end())
+	            {
+		            ++answer;
+		            reserve.erase(it);
+		            continue;
+	            }
             }
-            
+
             // 앞 번호 친구는 여벌이 없고 뒷 번호 친구가 여벌이 있는 경우
-            it = find(reserve.begin(), reserve.end(), lostFriend+1);
-            if(it != reserve.end())
+            it = find(reserve.begin(), reserve.end(), lostFriend + 1);
+            if (it != reserve.end())
             {
-                // 친구도 도난당하지 않은 경우에만 빌려줌
-                vector<int>::iterator it2 = find(lost.begin(), lost.end(), lostFriend+1);
-                if(it2 == lost.end())
-                {
-                    ++answer;
-                    reserve.erase(it);
-                }
+	            // 친구도 도난당하지 않은 경우에만 빌려줌
+	            vector<int>::iterator it2 = find(lost.begin(), lost.end(), lostFriend + 1);
+	            if (it2 == lost.end())
+	            {
+	        	    ++answer;
+	            	reserve.erase(it);
+	            }
             }
         }
     }
