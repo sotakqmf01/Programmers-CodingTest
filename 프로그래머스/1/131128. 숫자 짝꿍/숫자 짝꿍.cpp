@@ -26,7 +26,7 @@ string solution(string X, string Y) {
     
     sort(answer.begin(), answer.end(), greater<int>());
     
-    if(answer == "")
+    if(answer.empty())
     {
         return "-1";
     }
