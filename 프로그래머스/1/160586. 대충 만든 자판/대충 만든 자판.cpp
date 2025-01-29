@@ -8,6 +8,7 @@ vector<int> solution(vector<string> keymap, vector<string> targets) {
     vector<int> answer;
     vector<int> Alphabet(26, -1);
     
+    // 각 문자를 작성하기 위해 눌러야하는 최소 횟수를 배열에 담음
     for(const string& key : keymap)
     {
         for(int i = 0; i<key.length(); i++)
