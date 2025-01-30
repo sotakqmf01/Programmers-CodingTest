@@ -17,11 +17,11 @@ string solution(string s, string skip, int index) {
         int AdditionalIndex = index;
         for(int i = 1; i <= AdditionalIndex; i++)
         {
-            int RealIndex = (c-'a'+i <= 25) ? c-'a'+i : c-'a'+i-26;
-            while(RealIndex > 25)
-            {
-                RealIndex = RealIndex - 26;
-            }
+            int RealIndex = (c-'a'+i <= 25) ? c-'a'+i : (c-'a'+i) % 26;
+            //while(RealIndex > 25)
+            //{
+            //    RealIndex = RealIndex - 26;
+            //}
             
             if(Alphabet[RealIndex] == -1)
             {
