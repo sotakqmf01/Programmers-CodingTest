@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 다른 사람 풀이 봐야함
 vector<int> solution(vector<string> park, vector<string> routes) {
     vector<int> answer;
     int ParkHeight = park.size();
