@@ -24,7 +24,7 @@ vector<int> solution(vector<string> park, vector<string> routes) {
     for(const string& route : routes)
     {
         char direction = route[0];
-        int move = route[2] - '0';
+        int move = route[2] - '0';  // 문자 가져온 것을 숫자로 변환 해야함
         bool CanGo = true;
 
         
