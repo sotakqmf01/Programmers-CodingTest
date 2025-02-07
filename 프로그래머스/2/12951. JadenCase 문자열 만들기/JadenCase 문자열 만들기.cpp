@@ -8,6 +8,7 @@ string solution(string s) {
     string answer = "";
     string Word = "";
     
+    // 다른 사람 풀이 보기
     for(char c : s)
     {
         if(c == ' ')
