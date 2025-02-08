@@ -36,7 +36,7 @@ vector<int> solution(string s) {
             s += len % 2 + '0';
             len /= 2;
         }
-        reverse(s.begin(), s.end());
+        //reverse(s.begin(), s.end());
         
         TransCount++;
     }
