@@ -36,6 +36,8 @@ vector<int> solution(string s) {
             s += len % 2 + '0';
             len /= 2;
         }
+        // 이진 변환한게 어떻게 나오든 상관 없음
+        // 어짜피 0을 제거할 것이기 때문
         //reverse(s.begin(), s.end());
         
         TransCount++;
