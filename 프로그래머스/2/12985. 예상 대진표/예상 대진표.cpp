@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// 비트 연산자 사용해야하면 어떻게 할지 생각해보기
 int solution(int n, int a, int b)
 {
     int Round = 1;
