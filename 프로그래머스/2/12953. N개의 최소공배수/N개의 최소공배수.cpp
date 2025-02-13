@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
@@ -12,9 +11,7 @@ int GetGCD(int a, int b)
     return GetGCD(b, a%b);
 }
 
-int solution(vector<int> arr) {
-    int answer = 0;
-    
+int solution(vector<int> arr) {    
     sort(arr.begin(), arr.end(), greater<int>());
     
     int num = arr[0];
@@ -24,10 +21,8 @@ int solution(vector<int> arr) {
     for(int i = 1; i<arr.size(); i++)
     {
         gcd = GetGCD(num, arr[i]);
-        cout << "gcd : " << gcd << endl;
         lcm = num * arr[i] / gcd;
         num = lcm;
-        cout << num << endl;
     }
     
     return num;
