@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// 동적 계획법, 조합류의 문제
+// 동적 계획법, 조합 류, 경우의 수 문제
 vector<long long> Mem(2000, -1);
 
 long long solution(int n) {
