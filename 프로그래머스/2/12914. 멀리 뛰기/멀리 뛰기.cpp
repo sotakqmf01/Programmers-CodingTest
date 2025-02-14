@@ -15,6 +15,8 @@ long long solution(int n) {
     if(n == 2)
         return Mem[2] = 2;
     
+    // 기저 사례가 아닌 경우
+    // 이미 값을 구해서 배열에 있는지 확인
     long long ReturnValue = Mem[n];
     if(Mem[n] != -1)
         return Mem[n];
