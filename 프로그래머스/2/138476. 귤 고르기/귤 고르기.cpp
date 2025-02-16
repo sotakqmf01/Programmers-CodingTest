@@ -2,7 +2,6 @@
 #include <vector>
 #include <queue>
 #include <map>
-#include <iostream>
 
 using namespace std;
 
@@ -28,10 +27,10 @@ int solution(int k, vector<int> tangerine) {
     // 종류 별 개수 정렬
     for(pair<int, int> CountByType : m)
     {
-        cout << CountByType.second << endl;
         pq.push(CountByType.second);
     }
     
+    // k개를 고를 때 종류의 수를 가장 적게 만들기
     while(!pq.empty())
     {
         Count += pq.top();
