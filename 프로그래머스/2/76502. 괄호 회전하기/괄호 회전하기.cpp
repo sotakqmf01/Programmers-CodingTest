@@ -17,7 +17,7 @@ bool CheckCorrect(string s)
             CheckS += c;
         else
         {
-            // 닫는 괄호는 문자열 마지막 괄호와 비교
+            // 닫는 괄호는 문자열 마지막 괄호와 짝이 맞는지 비교
             if(CheckS.empty())
                 return false;
             else if(CheckS.back() == '[' && c == ']')
