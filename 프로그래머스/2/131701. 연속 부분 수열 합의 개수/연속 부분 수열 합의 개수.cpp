@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 다른 사람 풀이 + '질문하기'에 DP로 푼 풀이 보기
 void SequenceSum(vector<int> elements, int n, set<int>& SeqSum)
 {
     // 첫번째 요소부터 마지막 요소까지
