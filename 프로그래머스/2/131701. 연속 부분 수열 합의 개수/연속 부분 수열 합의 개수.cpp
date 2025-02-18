@@ -22,17 +22,43 @@ void SequenceSum(vector<int> elements, int n, set<int>& SeqSum)
     }
 }
 
+//int solution(vector<int> elements) {
+//    int answer = 0;
+//    set<int> SeqSum;
+//    
+//    // 길이 1 ~ n
+//    for(int i = 1; i <= elements.size(); i++)
+//    {
+//        SequenceSum(elements, i, SeqSum);
+//    }
+//    
+//    // 길이가 1인 경우 DP[0][]에 넣을지 DP[1][]에 넣을 지에 따라 2차원 배열 Row가 (size() or size()+1)
+//    // DP[i][j] = DP[i-1][j] + DP[1][(j+i-1) % elements.size()];
+//    
+//    return answer = SeqSum.size();
+//}
+
 int solution(vector<int> elements) {
     int answer = 0;
     set<int> SeqSum;
+    int Size = elements.size();
+    vector<vector<int>> DP(Size, vector<int>(Size, 0));
     
-    // 길이 1 ~ n
-    for(int i = 1; i <= elements.size(); i++)
+    for(int i = 0; i < Size; i++)
     {
-        SequenceSum(elements, i, SeqSum);
+        DP[0][i] = elements[i];  
+        SeqSum.insert(DP[0][i]);
     }
     
-    // DP[i][j] = DP[i-1][j] + DP[1][(j+i-1) % elements.size()];
-    
+    for(int i = 1; i < Size; i++)
+    {
+        for(int j = 0; j < Size; j++)
+        {
+            // 길이가 1인 경우 DP[0][]에 넣을지 DP[1][]에 넣을 지에 따라 2차원 배열 Row가 (size() or size()+1)
+            DP[i][j] = DP[i-1][j] + DP[0][(j+i) % elements.size()];
+            SeqSum.insert(DP[i][j]);
+        }
+    }
+
     return answer = SeqSum.size();
 }
