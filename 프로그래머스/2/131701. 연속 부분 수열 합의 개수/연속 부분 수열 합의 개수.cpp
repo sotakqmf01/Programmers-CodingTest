@@ -32,5 +32,7 @@ int solution(vector<int> elements) {
         SequenceSum(elements, i, SeqSum);
     }
     
+    // DP[i][j] = DP[i-1][j] + DP[1][(j+i-1) % elements.size()];
+    
     return answer = SeqSum.size();
 }
