@@ -20,6 +20,9 @@ vector<int> solution(int n, long long left, long long right) {
         {
             answer.push_back(i%n + 1);
         }
+        
+        // STL 활용을 잘하자
+        // answer.push_back(max(i/n, i%n) + 1);
     }
     
     return answer;
