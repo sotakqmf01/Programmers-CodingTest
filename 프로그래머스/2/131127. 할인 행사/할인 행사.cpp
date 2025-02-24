@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <map>
+#include <unordered_map>
 
 using namespace std;
 
@@ -39,22 +38,21 @@ int solution(vector<string> want, vector<int> number, vector<string> discount) {
             }
         }
         
-        if(i == discount.size()-10)
+        // 마지막 날에는 최신화 안하도록
+        if(i < discount.size()-10)
         {
-            break;
-        }
-        
-        // umap을 다음날에 대한 열흘치 품목으로 최신화
-        if(umap[discount[i]] == 1)
-        {
-            umap.erase(discount[i]);
-            umap[discount[i+10]]++;
-        }
-        else
-        {
-            umap[discount[i]]--;
-            umap[discount[i+10]]++;
-        }
+            // umap을 다음날에 대한 열흘치 품목으로 최신화
+            if(umap[discount[i]] == 1)
+            {
+                umap.erase(discount[i]);
+                umap[discount[i+10]]++;
+            }
+            else
+            {
+                umap[discount[i]]--;
+                umap[discount[i+10]]++;
+            }
+        } 
     }
     
     return answer;
