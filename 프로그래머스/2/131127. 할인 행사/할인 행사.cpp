@@ -14,7 +14,7 @@ int solution(vector<string> want, vector<int> number, vector<string> discount) {
         umap[discount[i]]++;
     }
         
-    // 첫날 ~ n-10째날까지 열흘에 대해 체크
+    // [첫날 ~ n-10째날]까지 열흘에 대해 체크
     for(int i = 0; i <= discount.size()-10; i++)
     {
         // 제품 수가 같은 경우
