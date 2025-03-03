@@ -19,7 +19,7 @@ int solution(vector<int> arr) {
     int lcm = 0;
 
     // lcm(a,b) = a * b / gcd(a,b);
-    // lcm(a,b,c) = lcm(lcm(a,b),c);
+    // lcm(a,b,c) = lcm(lcm(a,b),c) = lcm(a,b) * c / gcd(lcm(a,b),c)
     for(int i = 1; i<arr.size(); i++)
     {
         gcd = GetGCD(num, arr[i]);
