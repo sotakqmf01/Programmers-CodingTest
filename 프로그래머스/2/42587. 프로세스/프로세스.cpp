@@ -5,11 +5,12 @@
 
 using namespace std;
 
-// queue의 첫 요소부터 우선순위를 비교해보면서 문제 설명 과정 반복
+// 다른 사람 풀이 보기
+// 문제 설명 과정 반복
 int solution(vector<int> priorities, int location){
     int Count = 0;
     queue<pair<int, int>> WaitingQueue;
-    int HighestPriority = 0;
+    int HighestPriority = 0;    // 우선 순위 큐로 대체 가능
     
     // 제일 높은 우선 순위 찾기 + queue 초기화
     for(int i = 0; i < priorities.size(); i++)
