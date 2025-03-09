@@ -4,13 +4,30 @@
 #include <cmath>
 using namespace std;
 
-bool IsPrime(int num)
+//bool IsPrime(int num)
+//{
+//    for(int i = 2; i <= sqrt(num); i++){
+//        if(num % i == 0){
+//            // 나머지가 0되는게 있으면 소수가 아님
+//            return false;
+//        }   
+//    }
+//    return true;
+//}
+
+bool IsPrime(int n)
 {
-    for(int i = 2; i <= sqrt(num); i++){
-        if(num % i == 0){
-            // 나머지가 0되는게 있으면 소수가 아님
+    if(n == 1)
+    {
+        return false;
+    }
+    
+    for(int i = 2; i*i <= n; i++)
+    {
+        if(n % i == 0)
+        {
             return false;
-        }   
+        }
     }
     return true;
 }
