@@ -8,15 +8,12 @@ using namespace std;
 vector<int> solution(vector<int> numbers) {
     vector<int> answer(numbers.size(), -1); // answer는 뒷 큰수가 있는지 없는지 알 수 있음
     stack<int> st;          // 스택에는 다음 수와 answer(다음 수의 뒷 큰수)를 넣음
-    bool bFind = false;     // 뒷 큰수 여부
     
     st.push(numbers[numbers.size()-1]);
     
     // 배열의 뒤에서부터 체크
     for(int i = numbers.size() - 2; i >= 0; i--)
-    {
-        bFind = false;
-        
+    {        
         while(!st.empty())
         {
             int num = st.top();
@@ -24,16 +21,15 @@ vector<int> solution(vector<int> numbers) {
             
             if(numbers[i] < num)
             {
-                bFind = true;
                 answer[i] = num;
                 break;
             }
         }
         
-        // 뒷 큰수가 있으면, 뒷 큰수까지 비교해볼 기회를 줘야하기 때문
+        // 뒷 큰수가 있으면, 뒷 큰수까지 비교해볼 기회가 있어야함
         // - {[6], 5, 4, 4, 4, 7} 인 경우
         // - 뒷 큰수가 없으면 number[i]가 현재까지 가장 큰 수이니까 뒷 큰수는 몰라도 됨
-        if(bFind)
+        if(answer[i] != -1)
         {
             st.push(answer[i]);    
         }
@@ -43,15 +39,6 @@ vector<int> solution(vector<int> numbers) {
     return answer;
 }
 
-//테스트 15 〉	통과 (390.17ms, 240MB)
-//테스트 16 〉	통과 (336.64ms, 240MB)
-//테스트 17 〉	통과 (347.14ms, 240MB)
-//테스트 18 〉	통과 (358.32ms, 240MB)
-//테스트 19 〉	통과 (360.14ms, 240MB)
-//테스트 20 〉	통과 (335.43ms, 238MB)
-//테스트 21 〉	통과 (363.06ms, 242MB)
-//테스트 22 〉	통과 (261.43ms, 191MB)
-//테스트 23 〉	통과 (348.72ms, 240MB)
 // DP - 이중 for문 - answer배열을 메모이제이션으로 사용
 //vector<int> solution(vector<int> numbers) {
 //    // answer는 뒷 큰수가 있는지 없는지 알 수 있음
