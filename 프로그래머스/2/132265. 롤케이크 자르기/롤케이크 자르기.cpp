@@ -53,6 +53,7 @@ int solution(vector<int> topping){
     return answer;
 }
 
+// map을 사용하면 토핑의 가짓수를 빠르게 구할 수 있음
 //int solution(vector<int> topping){
 //    int answer = 0;
 //    map<int, int> bro;
@@ -86,7 +87,7 @@ int solution(vector<int> topping){
 //    return answer;
 //}
 
-// 모든 경우의 수
+// 모든 경우의 수 => 시간 초과
 //int CountTopping(vector<int>& topping)
 //{
 //    sort(topping.begin(), topping.end());
