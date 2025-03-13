@@ -6,6 +6,8 @@
 using namespace std;
 
 // vector로도 풀 수 있음
+// - map에서는 요소 추가, 접근, 삭제 시 O(logN)이라
+// - 요소 추가, 삭제를 할 필요없도록 만든 vector 코드보다 더 오래걸림
 int solution(vector<int> topping){
     int answer = 0;
     // 먹을 수 있는 종류별 토핑의 개수 - Count를 위해 사용
@@ -50,14 +52,6 @@ int solution(vector<int> topping){
 
     return answer;
 }
-
-//테스트 7 〉	통과 (218.08ms, 37.5MB)
-//테스트 8 〉	통과 (216.74ms, 37.5MB)
-//테스트 9 〉	통과 (243.36ms, 37.4MB)
-//테스트 10 〉	통과 (237.21ms, 37.5MB)
-//테스트 11 〉	통과 (7.23ms, 6.31MB)
-//테스트 12 〉	통과 (7.23ms, 4.43MB)
-//테스트 13 〉	통과 (278.30ms, 37.4MB)
 
 //int solution(vector<int> topping){
 //    int answer = 0;
