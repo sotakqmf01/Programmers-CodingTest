@@ -5,34 +5,17 @@
 
 using namespace std;
 
-//#include <string>
-//#include <vector>
-//
-//using namespace std;
-//
-//int dp[1000001];
-//
-//int solution(int x, int y, int n) {
-//    int answer = 0;
-//    fill(dp,dp+1000001, 10000000);
-//    dp[x] = 0;
-//
-//    for(int i = x; i <= y; i++){
-//        if(i+n <= y) dp[i+n] = min(dp[i+n],dp[i] + 1);
-//        if(i*2 <= y) dp[i*2] = min(dp[i*2], dp[i] + 1);
-//        if(i*3 <= y) dp[i*3] = min(dp[i*3], dp[i] + 1);
-//    }
-//    answer = dp[y];
-//    if(answer == 10000000) answer = -1;
-//    return answer;
-//}
-
+// DP만 사용한 코드
 vector<int> Mem;
 
 int solution(int x, int y, int n) {
-    int answer = 0;
-    Mem.resize(1000001);
-    fill(Mem.begin(), Mem.begin()+1000001, 10000000);
+    Mem.resize(y+1);
+    // INT_MAX로 초기화를 하면 
+    // for문에서 min()할 때 (Mem[i]+1) 부분에서 오버플로우 발생해서
+    // (Mem[i]+1)이 엄청 큰 값이 아니라 0이되버림 => INT_MAX보다 조금 작은 값으로 초기화
+    fill(Mem.begin(), Mem.end(), INT_MAX-10);
+    
+    // 기저 사례
     Mem[x] = 0;
 
     for(int i = x; i <= y; i++){
@@ -50,15 +33,15 @@ int solution(int x, int y, int n) {
         }
     }
     
-    answer = Mem[y];
-    if(answer == 10000000) 
+    if(Mem[y] == INT_MAX-10) 
     {
-        answer = -1;
+        return -1;
     }
     
-    return answer;
+    return Mem[y];
 }
 
+// DFS의 가지 수를 줄이기 위해
 // x를 index로 변환하기 위한 최소 연산 횟수를 담을 DP(메모이제이션) 배열 추가
 //vector<int> Mem;
 //
