@@ -5,18 +5,18 @@
 
 using namespace std;
 
-int answer = INT_MAX;
-// index로 변환하기 위한 최소 연산 횟수를 담을 메모이제이션 배열 추가
+// x를 index로 변환하기 위한 최소 연산 횟수를 담을 메모이제이션 배열 추가
 vector<int> Mem;
 
 void DFS(int depth, int x, int y, int n)
 {
-    // 더 작은 연산 횟수로 x값을 만들 수 있는 경우가 있다면 넘어감
+    // 더 적은 연산 횟수로 x값을 만들 수 있는 경우가 있다면 넘어감
     if(Mem[x] <= depth)
     {
         return;
     }
     
+    // 더 적은 연산 횟수로 x값을 만들 수 있는 경우를 찾았으면 배열 갱신
     Mem[x] = depth;
     if(x == y)
     {
@@ -39,13 +39,15 @@ void DFS(int depth, int x, int y, int n)
 
 int solution(int x, int y, int n) {
     Mem.resize(y+1);
-    for(int i = 0; i<Mem.size(); i++)
+    // 최솟값을 담을 배열이기 때문에 아주 큰 값으로 초기화
+    for(int i = 0; i < Mem.size(); i++)
     {
         Mem[i] = INT_MAX;
     }
     
     DFS(0, x, y ,n);
     
+    // x에서 y로 가는 경우가 없는 경우
     if(Mem[y] == INT_MAX)
     {
         return -1;
