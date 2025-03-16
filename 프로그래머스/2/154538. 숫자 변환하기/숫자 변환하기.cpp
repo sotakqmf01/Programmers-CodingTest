@@ -8,7 +8,7 @@ using namespace std;
 
 // ----------- BFS -----------
 // => DFS와 마찬가지로 가지가 많아짐 => 시간 초과
-// =>
+// => 가지 수를 줄이기 위해 DP(메모이제이션) 배열 사용
 int solution(int x, int y, int n){
     int answer = -1;
     queue<pair<int, int>> q;
@@ -27,8 +27,7 @@ int solution(int x, int y, int n){
         // => 1) x+5(15)를 queue에 넣는 순간의 depth(1)가 x에서 15로 가기 위한 최소 연산 횟수임
         // => 2) x*2(20)를 queue에 넣는 순간의 depth(1)가 x에서 20으로 가기 위한 최소 연산 횟수
         //   => 작업을 하다가 1)에서 넣은 15를 큐에서 빼서 x+5(20)해서 queue에 넣으면 depth는 2임
-        
-        // queue는 먼저 들어간게 먼저 나옴 => 처음 만난 y가 최소 연산으로 만들어진 y임
+        // => DFS와 다르게 처음 만난 y가 최소 연산으로 만들어진 y임
         if(ConvertedX == y)
         {
             answer = depth;
@@ -97,7 +96,7 @@ int solution(int x, int y, int n){
 //}
 
 // ----------- DFS의 가지 수를 줄이기 위해 ------------
-// x를 index로 변환하기 위한 최소 연산 횟수를 담을 DP(메모이제이션) 배열 추가
+// => x를 index로 변환하기 위한 최소 연산 횟수를 담을 DP(메모이제이션) 배열 추가
 //vector<int> Mem;
 //
 //void DFS(int depth, int x, int y, int n)
@@ -107,9 +106,12 @@ int solution(int x, int y, int n){
 //    {
 //        return;
 //    }
-//    
+//    // DFS는 모든 경우의 수를 다 봄, 뒤에 나오는 경우가 더 좋은 경우일 수도 있음
+//    // => y에 도달하더라도 배열 갱신은 미리 해야함.
 //    // 더 적은 연산 횟수로 x값을 만들 수 있는 경우를 찾았으면 DP 배열 갱신
 //    Mem[x] = depth;
+//
+//    // y에 도달하면, 그 이후로의 DFS는 하지 않아도 되니까 넘어감
 //    if(x == y)
 //    {
 //        return;
