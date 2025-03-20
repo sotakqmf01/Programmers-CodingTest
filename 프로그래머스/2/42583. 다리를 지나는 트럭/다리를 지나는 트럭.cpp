@@ -6,56 +6,44 @@ using namespace std;
 
 int solution(int bridge_length, int weight, vector<int> truck_weights) {
     int answer = 0;
-    queue<int> q;
     int currentWeight = 0;
     int acrossTruckCount = 0;
-    int waitTruckCount = truck_weights.size();
-    int nextTruck = 0;
+    int nextTruckIndex = 0;
+    // 다리를 queue로 표현
+    queue<int> bridge;
     
-    // 모든 트럭이 건너갈 동안 1초에 한 칸 씩 이동
+    // 모든 트럭이 건너갈 동안
     while(acrossTruckCount != truck_weights.size())
     {
-        // 한 칸 씩 이동
+        // 1초에 한 칸 씩 이동
         answer++;
         
-        // queue를 다리라고 보고
-        if(q.size() == bridge_length)
+        // 다리의 끝에 도달하면, 맨 앞 트럭 제거 (한 칸 전진)
+        if(bridge.size() == bridge_length)
         {
-            int truckWeight = q.front();
+            int truckWeight = bridge.front();
+            bridge.pop();
+            
             // 양수는 트럭, 음수는 빈 자리
             if(truckWeight > 0)
             {
                 currentWeight -= truckWeight;
                 acrossTruckCount++;
-                q.pop();
-            }
-            else
-            {
-                q.pop();
-            }
+            } 
         }
-        
-        if(acrossTruckCount == truck_weights.size())
+
+        // 기다리는 트럭이 있고, 다리의 한계 무게 내라면 새로운 트럭 진입
+        if(nextTruckIndex < truck_weights.size() && currentWeight + truck_weights[nextTruckIndex] <= weight)
         {
-            break;
-        }
-        
-        // 기다리는 트럭이 있는 경우에만 다리에 올라갈 수 있는지 비교해보고
-        // 그 외에는 빈 자리 넣기
-        if(waitTruckCount != 0 && currentWeight + truck_weights[nextTruck] <= weight)
-        {
-            currentWeight += truck_weights[nextTruck];
-            q.push(truck_weights[nextTruck]);
-            if(nextTruck + 1 < truck_weights.size())
-            {
-                nextTruck++;
-            }
-            waitTruckCount--;
+            currentWeight += truck_weights[nextTruckIndex];
+            bridge.push(truck_weights[nextTruckIndex]);
+            nextTruckIndex++;
         }
         else
         {
+            // 진입할 트럭이 없거나 무게 한계를 초과하면 빈 칸(0)을 추가하여 시간 경과를 표현
             // 다리의 빈 자리 표현 - 빈 칸을 queue에 넣음
-            q.push(-1);
+            bridge.push(-1);
         }     
     }
     
