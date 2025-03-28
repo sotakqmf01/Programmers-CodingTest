@@ -63,7 +63,7 @@ string solution(vector<int> numbers) {
         answer += str;
     }
     
-    // [0, 0, 0] = 0
+    // [0, 0, 0] = 0 이런 반례 조심
     if(answer[0] == '0')
         return "0";
 
