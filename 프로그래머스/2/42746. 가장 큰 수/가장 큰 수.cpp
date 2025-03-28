@@ -40,6 +40,7 @@ bool Compare(const string& str1, const string& str2)
     {
         // 길이가 다를 때는 두 문자열을 순서를 다르게해서 더하고 비교했을 때
         // 더 큰 경우의 앞에 붙은 문자열이 더 크다
+        // 생각해보면 길이가 같은 경우에도 이렇게 해도 될 듯
         string str12 = str1 + str2;
         string str21 = str2 + str1;
 
