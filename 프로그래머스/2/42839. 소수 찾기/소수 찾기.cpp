@@ -39,6 +39,9 @@ void DFS(const string& nextNumStr, const string& numbers, set<string>& numStrSet
         
         numStrSet.emplace(nextNumStr);
         
+        // 소수 판별만 하는 함수를 만들지 말고
+        // nexNumStr을 매개변수로 받아서 소수 판별하고 소수이면
+        // numSet에 추가하는 그런 함수를 만들면 좀 더 괜찮았을 듯
         int num = stoi(nextNumStr);
         if(numSet.find(num) == numSet.end())
         {
