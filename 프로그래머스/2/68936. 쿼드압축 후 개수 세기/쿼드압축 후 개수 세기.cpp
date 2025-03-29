@@ -6,6 +6,7 @@ using namespace std;
 int zeroNum = 0;
 int oneNum = 0;
 
+// [rowStart, rowEnd)와 [colStart, colEnd) 영역을 처리
 void Division(vector<vector<int>>& arr, int rowStart, int rowEnd, int colStart, int colEnd)
 {
     if(rowEnd - 1 < rowStart || colEnd - 1 < colStart)
