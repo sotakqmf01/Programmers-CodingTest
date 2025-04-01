@@ -2,7 +2,6 @@
 #include <vector>
 #include <stack>
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
