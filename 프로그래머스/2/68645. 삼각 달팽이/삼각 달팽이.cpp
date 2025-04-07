@@ -73,22 +73,27 @@ vector<int> solution(int n) {
 }
 
 // 다른 사람 풀이 : 이 방법이면 사각형 만드는 것도 쉬울 듯
+// - 사각형이면 p를 줄이는 부분에서 좀 생각해야할 듯
 //int arr[1000][1000];
 //vector<int> solution(int n) {
 //    vector<int> answer;
 //    int p = n;
 //    int k = 1;
 //    int x = -1, y = 0;
+//
+//    // DOWN, RIGHT, UP을 하는 총 횟수가 n이랑 같음
+//    // i는 DOWN, RIGHT, UP을 하는 횟수
 //    for (int i = 0; i < n; i++) {
 //        // 두번째 for문을 이렇게 할 필요가 없어 보이는데
+//        // j는 각 방향마다 채워야할 배열 개수
 //        for (int j = p;j >= 1; j--) {
-//            // Down
+//            // DOWN
 //            if(i%3==0) {
 //                arr[++x][y] = k;
-//            // Right
+//            // RIGHT
 //            } else if (i % 3 == 1) {
 //                arr[x][++y] = k;
-//            // Up
+//            // UP
 //            } else if (i % 3 == 2) {
 //                arr[--x][--y] = k;
 //            }
