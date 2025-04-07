@@ -72,6 +72,7 @@ vector<int> solution(int n) {
     return answer;
 }
 
+// 다른 사람 풀이 : 이 방법이면 사각형 만드는 것도 쉬울 듯
 //int arr[1000][1000];
 //vector<int> solution(int n) {
 //    vector<int> answer;
@@ -79,11 +80,15 @@ vector<int> solution(int n) {
 //    int k = 1;
 //    int x = -1, y = 0;
 //    for (int i = 0; i < n; i++) {
+//        // 두번째 for문을 이렇게 할 필요가 없어 보이는데
 //        for (int j = p;j >= 1; j--) {
+//            // Down
 //            if(i%3==0) {
 //                arr[++x][y] = k;
+//            // Right
 //            } else if (i % 3 == 1) {
 //                arr[x][++y] = k;
+//            // Up
 //            } else if (i % 3 == 2) {
 //                arr[--x][--y] = k;
 //            }
