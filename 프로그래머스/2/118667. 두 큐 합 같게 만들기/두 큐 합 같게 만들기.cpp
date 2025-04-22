@@ -30,7 +30,7 @@ int solution(vector<int> queue1, vector<int> queue2) {
     // ★★★[반례] : 모든 원소의 합이 짝수이지만, 어떤 경우에도 총합의 절반을 만들지 못하는 경우(무한 루프)
     // queue1 = [101, 100]
     // queue2 = [102, 103]
-    // => 연산 횟수 제한 3 * queue.size()
+    // => ★★★연산 횟수 제한 3 * queue.size()
     int maxCount = 3 * queue1.size();
     while(answer <= maxCount){
         if(sumOfQ1 == sumOfQ2)
@@ -75,3 +75,6 @@ int solution(vector<int> queue1, vector<int> queue2) {
 //   3n인 이유? 간단하게 생각했을 때, 한 쪽으로 몰아야할 때 [n번]
 //             그럼 몰린 쪽 queue의 길이는 2n이고, 다시 반대쪽으로 몰아보면 [2n번]
 //   ※ 총 3n번이면 한쪽에 몰았다가 반대쪽으로 몰면서 모든 경우를 다 볼 수 있음
+//      - 한쪽으로 전부 모는 경우는 if(empty()) 부분에서 잡긴함
+//      - 한쪽으로 몰지않고 티키타가되는 반례에서는 q1과 q2가 반전될 때까지만 해보면 됨
+//        - 이 경우에도 최대 3n 안에 걸림
