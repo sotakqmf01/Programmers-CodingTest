@@ -27,7 +27,7 @@ int solution(vector<int> queue1, vector<int> queue2) {
     if((sumOfQ1 + sumOfQ2) % 2 != 0)
         return -1;
     
-    // [반례] : 모든 원소의 합이 짝수이지만, 어떤 경우에도 총합의 절반을 만들지 못하는 경우(무한 반복)
+    // [반례] : 모든 원소의 합이 짝수이지만, 어떤 경우에도 총합의 절반을 만들지 못하는 경우(무한 루프)
     // queue1 = [1, 1]
     // queue2 = [1, 5]
     // => 연산 횟수 제한 3 * queue.size()
