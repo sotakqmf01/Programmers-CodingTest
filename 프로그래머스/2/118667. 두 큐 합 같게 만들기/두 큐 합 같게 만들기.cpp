@@ -40,8 +40,8 @@ int solution(vector<int> queue1, vector<int> queue2) {
         // queue2 = [1, 1, 1, ..., 1]           // 길이 300000
         // => queue1에서 100만을 제외하고 전부 queue2로 옮겼을 때도 합이 같지 않음 => 절대 두 큐의 합은 같아질 수 없음
         //    queue1에서 100만을 넘기는 시점에 queue1은 empty()가 됨
-        //if(q1.empty() || q2.empty())
-            //return -1;
+        if(q1.empty() || q2.empty())
+            return -1;
         
         if(sumOfQ1 > sumOfQ2){
             int front = q1.front();
