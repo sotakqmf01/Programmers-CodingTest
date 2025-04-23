@@ -64,33 +64,42 @@ using namespace std;
 //    return answer;
 //}
 
-int m, n;
-bool visited[100][100];
-int food;
-vector<string> maps;
+int dx[4] = {-1, 1, 0, 0}, dy[4] = {0, 0, -1, 1};
+vector<vector<bool>> visited;
 
-void dfs(int x, int y) {
-    visited[x][y] = true;
-    food += int(maps[x][y]) - '0';
-    if(x + 1 < m  && maps[x + 1][y] != 'X' && !visited[x + 1][y]) dfs(x + 1, y);
-    if(y + 1 < n  && maps[x][y + 1] != 'X' && !visited[x][y + 1]) dfs(x, y + 1);
-    if(x - 1 >= 0 && maps[x - 1][y] != 'X' && !visited[x - 1][y]) dfs(x - 1, y);    
-    if(y - 1 >= 0 && maps[x][y - 1] != 'X' && !visited[x][y - 1]) dfs(x, y - 1);    
-}
+int dfs(int x, int y, vector<string>& maps) {
+    int ret = maps[x][y] - '0';
 
-vector<int> solution(vector<string> data) {
-    maps = data;
-    m = maps.size();   n = maps[0].length();
-    for(int i = 0; i < m; i++) for(int j = 0; j < n; j++) visited[i][j] = false;
-
-    vector<int> answer;
-    for(int i = 0; i < m; i++) for(int j = 0; j < n; j++) {
-        food = 0;
-        if(maps[i][j] != 'X' && !visited[i][j]) dfs(i, j);
-        if(food != 0) answer.push_back(food);
+    for(int k=0; k<4; k++) {
+        int nextX = x+dx[k];
+        int nextY = y+dy[k];
+        if(0<= nextX && nextX<maps.size() && 0<=nextY && nextY<maps[0].size()) {
+            if(!visited[nextX][nextY] && maps[nextX][nextY] != 'X') {
+                visited[nextX][nextY] = true;
+                ret += dfs(nextX, nextY, maps);
+            }
+        }
     }
 
-    if(int(answer.size()) == 0) return {-1};
+    return ret;
+}
+
+vector<int> solution(vector<string> maps) {
+    vector<int> answer;
+    visited = vector<vector<bool>>(maps.size(), vector<bool>(maps[0].size(), false));
+
+    for(int i=0; i<maps.size(); i++) {
+        for(int j=0; j<maps[0].size(); j++) {
+            if(!visited[i][j] && maps[i][j] != 'X') {
+                visited[i][j] = true;
+                answer.push_back(dfs(i, j, maps));
+            }
+        }
+    }
+
+    if(answer.empty()) return {-1};
+
     sort(answer.begin(), answer.end());
+
     return answer;
 }
