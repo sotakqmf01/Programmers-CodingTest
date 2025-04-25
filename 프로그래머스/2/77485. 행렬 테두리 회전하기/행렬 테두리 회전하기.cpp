@@ -54,11 +54,9 @@ int Rotation(vector<int>& query, vector<vector<int>>& matrix){
 
 vector<int> solution(int rows, int columns, vector<vector<int>> queries) {
     vector<int> answer;
-    vector<vector<int>> matrix;
-    matrix.resize(rows);
+    vector<vector<int>> matrix(rows, vector<int>(columns));
         
     for(int i = 0; i < rows; i++){
-        matrix[i].resize(columns);
         for(int j = 0; j < columns; j++){
             matrix[i][j] = i*columns + (j+1);
         }
