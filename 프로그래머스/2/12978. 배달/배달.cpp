@@ -1,7 +1,6 @@
 #include <vector>
 #include <queue>
 #include <limits.h>
-#include <iostream>
 using namespace std;
 
 void Dijkstra(int totalTown, int start, const vector<vector<int>>& adjacents, vector<int>& best){
@@ -9,6 +8,7 @@ void Dijkstra(int totalTown, int start, const vector<vector<int>>& adjacents, ve
     priority_queue<pair<int, int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
     vector<bool> visited(totalTown+1, false);
     
+    // 시작노드(1번 노드) 세팅
     best[start] = 0;
     pq.emplace(0, start);
     
