@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
@@ -49,7 +48,6 @@ int solution(vector<vector<string>> book_time) {
         }
         else{
             // 예약 가능한 방이 존재하지 않으면, 추가
-            cout << " ----- " << endl;
             rooms.push_back(canBookTime);
         }
     }
@@ -75,6 +73,7 @@ int solution(vector<vector<string>> book_time) {
 //            checkOutMin = checkOutMin - 60;
 //            checkOutHour++;
 //        }
+//
 //        // [로직 문제] 
 //        // Hour가 01, 02, ..., 09 이런 식이어야하는데,
 //        // to_string하면서 그냥 1, 2, ..., 9 가 되어서 비교가 제대로 안됨
@@ -93,7 +92,6 @@ int solution(vector<vector<string>> book_time) {
 //        }
 //        else{
 //            // 예약 가능한 방이 존재하지 않으면, 추가
-//            cout << " ----- " << endl;
 //            rooms.push_back(canBookTime);
 //        }
 //    }
