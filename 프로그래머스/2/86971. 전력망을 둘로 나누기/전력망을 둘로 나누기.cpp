@@ -30,6 +30,7 @@ int DFS(int n, int start, const vector<vector<bool>>& adjacents){
         }
     }
     
+    // 두 전력망의 송전탑 개수 차이
     return abs((n - visitedTowerCount) - visitedTowerCount);
 }
 
