@@ -62,6 +62,7 @@ int solution(int n, vector<vector<int>> wires) {
 }
 
 // ★★★서브 트리 방식
+// - 트리 구조이므로 사이클 x => 부모로 되돌아가는 것만 안하면 됨
 //void DFS(int curr, int prev, vector<vector<int>>& adjacents, vector<int>& subGraph){
 //    subGraph[curr] = 1;
 //    for(int& adjacent : adjacents[curr]){
