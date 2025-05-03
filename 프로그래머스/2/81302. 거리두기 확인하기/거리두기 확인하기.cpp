@@ -63,99 +63,99 @@ int CheckSit(vector<Pos>& people, vector<string>& place){
     return 1;
 }
 
-//vector<int> solution(vector<vector<string>> places) {
-//    vector<int> answer;
-//    vector<Pos> people;
-//    
-//    for(vector<string>& place : places){
-//        people.clear();
-//        
-//        // 각 방에 대한 사람들 위치 저장        
-//        for(int i = 0; i<place.size(); i++){
-//            for(int j = 0; j<5; j++){
-//                if(place[i][j] == 'P'){
-//                    people.emplace_back(i, j);
-//                }
-//            }
-//        }
-//        
-//        answer.push_back(CheckSit(people, place));
-//    }
-//     
-//    return answer;
-//}
-
-// BFS 사용 풀이
-bool BFS(int x, int y, int dist, vector<string> place){
-    int dx[] = {-1, 1, 0, 0};
-    int dy[] = {0, 0, -1, 1};
-    queue<pair<Pos, int>> q;
-    vector<vector<bool>> visited(5, vector<bool>(5, false));
-    
-    q.emplace(Pos(x,y), dist);
-    
-    while(!q.empty()){
-        int x = q.front().first.x;
-        int y = q.front().first.y;
-        int currDist = q.front().second;
-        q.pop();
-        
-        if(currDist > 0 && place[x][y] == 'P')
-            return false;
-        if(currDist > 2)
-            continue;
-        if(visited[x][y] == true)
-            continue;
-        if(place[x][y] == 'X')
-            continue;
-        
-        visited[x][y] = true;
-
-        for(int i = 0; i<4; i++){
-            int nextX = x + dx[i];
-            int nextY = y + dy[i];
-            int nextDist = currDist + 1;
-            
-            if(nextX < 0 || nextX > 4)
-                continue;
-            if(nextY < 0 || nextY > 4)
-                continue;
-            if(visited[nextX][nextY])
-                continue;        
-            
-            if(nextDist <= 2)
-                q.emplace(Pos(nextX, nextY), nextDist);
-        }
-    }
-    
-    return true;
-}
-
 vector<int> solution(vector<vector<string>> places) {
     vector<int> answer;
-        
+    vector<Pos> people;
+    
     for(vector<string>& place : places){
-        bool bKeepDist = true;
+        people.clear();
         
-        for(int i = 0; i<5; i++){
+        // 각 방에 대한 사람들 위치 저장        
+        for(int i = 0; i<place.size(); i++){
             for(int j = 0; j<5; j++){
                 if(place[i][j] == 'P'){
-                    bKeepDist = BFS(i, j, 0, place);
-                    if(!bKeepDist)
-                        break;
+                    people.emplace_back(i, j);
                 }
             }
-            
-            if(!bKeepDist)
-                break;
         }
         
-        answer.push_back(bKeepDist ? 1 : 0);
+        answer.push_back(CheckSit(people, place));
     }
-    
+     
     return answer;
 }
 
+// BFS 사용 풀이
+//bool BFS(int x, int y, int dist, vector<string> place){
+//    int dx[] = {-1, 1, 0, 0};
+//    int dy[] = {0, 0, -1, 1};
+//    queue<pair<Pos, int>> q;
+//    vector<vector<bool>> visited(5, vector<bool>(5, false));
+//    
+//    q.emplace(Pos(x,y), dist);
+//    
+//    while(!q.empty()){
+//        int x = q.front().first.x;
+//        int y = q.front().first.y;
+//        int currDist = q.front().second;
+//        q.pop();
+//        
+//        // GPT는 아래 코드들을 next구하는 곳에서 바로 체크함
+//        if(currDist > 0 && place[x][y] == 'P')
+//            return false;
+//        if(currDist > 2)
+//            continue;
+//        if(visited[x][y] == true)
+//            continue;
+//        if(place[x][y] == 'X')
+//            continue;
+//        
+//        visited[x][y] = true;
+//
+//        for(int i = 0; i<4; i++){
+//            int nextX = x + dx[i];
+//            int nextY = y + dy[i];
+//            int nextDist = currDist + 1;
+//            
+//            if(nextX < 0 || nextX > 4)
+//                continue;
+//            if(nextY < 0 || nextY > 4)
+//                continue;
+//            if(visited[nextX][nextY])
+//                continue;        
+//            
+//            if(nextDist <= 2)
+//                q.emplace(Pos(nextX, nextY), nextDist);
+//        }
+//    }
+//    
+//    return true;
+//}
+//
+//vector<int> solution(vector<vector<string>> places) {
+//    vector<int> answer;
+//        
+//    for(vector<string>& place : places){
+//        bool bKeepDist = true;
+//        
+//        for(int i = 0; i<5; i++){
+//            for(int j = 0; j<5; j++){
+//                if(place[i][j] == 'P'){
+//                    bKeepDist = BFS(i, j, 0, place);
+//                    if(!bKeepDist)
+//                        break;
+//                }
+//            }
+//            
+//            if(!bKeepDist)
+//                break;
+//        }
+//        
+//        answer.push_back(bKeepDist ? 1 : 0);
+//    }
+//    
+//    return answer;
+//}
 
 // 문제 접근 방법 1
 // 1. 3중 for문으로 P와 X를 찾습니다.
