@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// 다른 사람 풀이 보기
 int getGCD(int a, int b){
     if(b == 0)
         return a;
@@ -70,6 +71,19 @@ int solution(vector<int> arrayA, vector<int> arrayB) {
     
     return answer;
 }
+
+// 테스트케이스 26번만 틀린 오답 코드
+//int arrayGCD(vector<int>& gcdArr, vector<int>& CardPack){
+//    int minOfGCD = 100000000;
+//    
+//    for(int num : CardPack){
+//        int GCD = getGCD(CardPack[0], num);
+//        gcdArr.push_back(GCD);
+//        minOfGCD = min(minOfGCD, GCD);
+//    }
+//    
+//    return minOfGCD;
+//}
 
 //int solution(vector<int> arrayA, vector<int> arrayB) {
 //    int answer = 0;
