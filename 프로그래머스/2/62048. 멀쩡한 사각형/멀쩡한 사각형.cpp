@@ -6,17 +6,17 @@ using namespace std;
 // Y = (w/h)X 그래프보다 밑에 있는 격자의 개수 세는 방식
 // - 다만 큰 수의 나눗셈을 할 때 float를 사용하면 부동 소수점 정밀도가 떨어져, 오차가 클 수 있음
 // - double을 쓰면 조금이나마 해결할 수 있지만, 근본적인 해결은 아님
-//long long solution(int w,int h) {
-//    long long answer = 0;
-//    
-//    for(int x = 0; x < h; x++){
-//        double y = (double)w / h * x;
-//        
-//        answer += (int)floor(y);
-//    }
-//    
-//    return answer * 2;
-//}
+long long solution(int w,int h) {
+    long long answer = 0;
+    
+    for(int x = 0; x < h; x++){
+        double y = (double)w / h * x;
+        
+        answer += (int)floor(y);
+    }
+    
+    return answer * 2;
+}
 
 //long long solution(int w,int h) {
 //    long long answer = w * h;
@@ -51,16 +51,16 @@ using namespace std;
 //  - 잘려 나간 칸 수 = W+H − gcd(W,H)
 // 
 // ▶ 이렇게 구해진 만큼의 칸이 통째로 잘려서 쓸 수 없고, 나머지 W×H − (W+H−gcd(W,H))가 사용할 수 있는 칸의 수가 되는 거죠.
-long long gcd(long long a, long long b){
-    if(b == 0)
-        return a;
-    
-    return gcd(b, a%b);
-}
-
-long long solution(int w,int h) {
-    long long answer = (long long)w * h;
-    long long useless = (long long)w+h - gcd(w, h);
-    
-    return answer - useless;
-}
+//long long gcd(long long a, long long b){
+//    if(b == 0)
+//        return a;
+//    
+//    return gcd(b, a%b);
+//}
+//
+//long long solution(int w,int h) {
+//    long long answer = (long long)w * h;
+//    long long useless = (long long)w+h - gcd(w, h);
+//    
+//    return answer - useless;
+//}
