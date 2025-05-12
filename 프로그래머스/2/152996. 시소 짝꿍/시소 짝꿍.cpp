@@ -66,47 +66,77 @@ using namespace std;
 //    return answer;
 //}
 
-#include <string>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
+// 다른 사람 풀이
+//long long solution(vector<int> weights) {
+//    long long answer = 0; // 시소 짝꿍 쌍의 개수를 저장할 변수 초기화
+//    
+//    sort(weights.begin(), weights.end()); // 몸무게 목록을 오름차순으로 정렬
+//
+//    // 이중 반복문을 사용하여 가능한 모든 몸무게 쌍을 비교
+//    for(int i = 0; i < weights.size(); i++)
+//    {
+//        for(int j = i + 1; j < weights.size(); j++)
+//        {
+//            // 두 사람의 몸무게가 같은 경우
+//            if(weights[i] == weights[j])
+//            {
+//                answer++; // 시소 짝꿍 쌍의 개수 증가
+//            }
+//            // 몸무게 비율이 2:3인 경우 (2m, 3m 좌석)
+//            else if(weights[i] * 3 == weights[j] * 2)
+//            {
+//                answer++; // 시소 짝꿍 쌍의 개수 증가
+//            }
+//            // 몸무게 비율이 3:4인 경우 (3m, 4m 좌석)
+//            else if(weights[i] * 4 == weights[j] * 3)
+//            {
+//                answer++; // 시소 짝꿍 쌍의 개수 증가
+//            }
+//            // 몸무게 비율이 1:2인 경우 (2m, 4m 좌석)
+//            else if(weights[i] * 2 == weights[j])
+//            {
+//                answer++; // 시소 짝꿍 쌍의 개수 증가
+//            }
+//            // 현재 몸무게의 2배를 초과하는 몸무게가 나오면 더 이상 비교할 필요가 없음
+//            else if(weights[i] * 2 < weights[j])
+//                break; // 내부 반복문 종료
+//        }
+//    }
+//    
+//    return answer; // 시소 짝꿍 쌍의 총 개수 반환
+//}
 
 long long solution(vector<int> weights) {
-    long long answer = 0; // 시소 짝꿍 쌍의 개수를 저장할 변수 초기화
-    
-    sort(weights.begin(), weights.end()); // 몸무게 목록을 오름차순으로 정렬
+    long long answer = 0;
 
-    // 이중 반복문을 사용하여 가능한 모든 몸무게 쌍을 비교
-    for(int i = 0; i < weights.size(); i++)
+    vector<long long> arr(2001,0);
+
+    for(const auto v : weights)
     {
-        for(int j = i + 1; j < weights.size(); j++)
-        {
-            // 두 사람의 몸무게가 같은 경우
-            if(weights[i] == weights[j])
-            {
-                answer++; // 시소 짝꿍 쌍의 개수 증가
-            }
-            // 몸무게 비율이 2:3인 경우 (2m, 3m 좌석)
-            else if(weights[i] * 3 == weights[j] * 2)
-            {
-                answer++; // 시소 짝꿍 쌍의 개수 증가
-            }
-            // 몸무게 비율이 3:4인 경우 (3m, 4m 좌석)
-            else if(weights[i] * 4 == weights[j] * 3)
-            {
-                answer++; // 시소 짝꿍 쌍의 개수 증가
-            }
-            // 몸무게 비율이 1:2인 경우 (2m, 4m 좌석)
-            else if(weights[i] * 2 == weights[j])
-            {
-                answer++; // 시소 짝꿍 쌍의 개수 증가
-            }
-            // 현재 몸무게의 2배를 초과하는 몸무게가 나오면 더 이상 비교할 필요가 없음
-            else if(weights[i] * 2 < weights[j])
-                break; // 내부 반복문 종료
-        }
+        arr[v]++;
     }
-    
-    return answer; // 시소 짝꿍 쌍의 총 개수 반환
+
+    for(int i = 100; i <= 1000; ++i)
+    {
+        if(arr[i] == 0)
+        {
+            continue;
+        }
+
+        answer += arr[i]*(arr[i]-1) / 2;
+
+        answer += arr[i] * arr[2 * i];
+
+        if((i * 3) % 2 == 0)
+        {
+            answer += arr[i] * arr[i * 3 / 2];
+        }
+
+        if((i * 4) % 3 == 0)
+        {
+            answer += arr[i] * arr[i * 4 / 3];
+        }   
+    }
+
+    return answer;
 }
