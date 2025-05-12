@@ -86,13 +86,18 @@ long long solution(vector<int> weights) {
 //
 //        answer += arr[i]*(arr[i]-1) / 2;
 //
+//        // 4m:2m인 경우(2:4인 경우는 생각하지 않아도 됨)
+//        // - for문으로 몸무게를 작은 값에서부터 큰 값으로 가면서 체크하기 때문
+//        // - 몸무게가 i인 사람 수 * 몸무게가 2i인 사람 수
 //        answer += arr[i] * arr[2 * i];
 //
+//        // 3m:2m인 경우
 //        if((i * 3) % 2 == 0)
 //        {
 //            answer += arr[i] * arr[i * 3 / 2];
 //        }
 //
+//        // 4m:3m인 경우
 //        if((i * 4) % 3 == 0)
 //        {
 //            answer += arr[i] * arr[i * 4 / 3];
