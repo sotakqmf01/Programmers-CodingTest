@@ -7,13 +7,13 @@ using namespace std;
 
 int standardKey = 0;
 //
-bool compare(vector<int> tuple1, vector<int> tuple2){
-    if(tuple1[standardKey - 1] == tuple2[standardKey - 1]){
-        return tuple1[0] > tuple2[0];
-    }
-    
-    return tuple1[standardKey -1] < tuple2[standardKey - 1];
-}
+//bool compare(vector<int> tuple1, vector<int> tuple2){
+//    if(tuple1[standardKey - 1] == tuple2[standardKey - 1]){
+//        return tuple1[0] > tuple2[0];
+//    }
+//    
+//    return tuple1[standardKey -1] < tuple2[standardKey - 1];
+//}
 //
 //int solution(vector<vector<int>> data, int col, int row_begin, int row_end) {
 //    int S_i = 0;
@@ -35,21 +35,20 @@ bool compare(vector<int> tuple1, vector<int> tuple2){
 //    return hash;
 //}
 
-
-//bool compare(vector<int> tuple1, vector<int> tuple2){
-//    if(tuple1[standardKey - 1] < tuple2[standardKey - 1]){
-//        return true;
-//    }
-//    else if(tuple1[standardKey - 1] > tuple2[standardKey - 1]){
-//        return false;
-//    }
-//    else{
-//        if(tuple1[0] > tuple1[0])
-//            return true;
-//        else
-//            return false;
-//    }
-//}
+bool compare(vector<int> tuple1, vector<int> tuple2){
+    if(tuple1[standardKey - 1] < tuple2[standardKey - 1]){
+        return true;
+    }
+    else if(tuple1[standardKey - 1] > tuple2[standardKey - 1]){
+        return false;
+    }
+    else{
+        if(tuple1[0] > tuple2[0])
+            return true;
+        else
+            return false;
+    }
+}
 
 int solution(vector<vector<int>> data, int col, int row_begin, int row_end) {
     int S_i = 0;
