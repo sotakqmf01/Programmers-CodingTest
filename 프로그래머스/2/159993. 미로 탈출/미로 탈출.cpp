@@ -30,7 +30,7 @@ bool CanGo(int x, int y, const vector<string>& maps){
 int BFS(Pos& Src, Pos& Dst, const vector<string>& maps){
     int dx[] = {-1, 1, 0, 0};
     int dy[] = {0, 0, -1, 1};
-    queue<pair<Pos, int>> q;  // 특정 Pos와 Src에서 이 Pos까지의 거리를 쌍으로 저장
+    queue<pair<Pos, int>> q;  // <(특정 Pos), (Src에서 이 Pos까지의 거리)>를 쌍으로 저장
     vector<vector<bool>> visited(maps.size(), vector<bool>(maps[0].length(), false));
     
     q.emplace(Src, 0);
@@ -45,7 +45,8 @@ int BFS(Pos& Src, Pos& Dst, const vector<string>& maps){
         {
             return CurrentDistance;
         }
-                
+        
+        // 주변 상,하,좌,우로 이동
         for(int i = 0; i < 4; i++){
             int NextX = CurrentPos.x + dx[i];
             int NextY = CurrentPos.y + dy[i];
@@ -61,12 +62,13 @@ int BFS(Pos& Src, Pos& Dst, const vector<string>& maps){
                 }
             }
         }
-        
     }
     
     return -1;
 }
 
+// BFS 사용
+// - 최단거리 + 가중치 일정(1 ← 한 칸 이동하는데 1초)
 int solution(vector<string> maps) {
     int StartToLever = 0;
     int LeverToEnd = 0;
