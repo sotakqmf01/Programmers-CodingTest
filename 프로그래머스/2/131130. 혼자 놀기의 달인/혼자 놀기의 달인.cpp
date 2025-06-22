@@ -44,8 +44,10 @@ int solution(vector<int> cards) {
     //   - 이 그룹에 있는 원소(노드)들은 어떤 걸 선택해도 같은 그룹이 나옴
     // => 그룹만 찾으면 됨
     for(int i = 0; i < cards.size(); i++){
-        int boxesOfGroup = DFS(i, 0, cards, visited);
-        boxesOfGroups.push_back(boxesOfGroup);
+        if(!visited[i]){
+            int boxesOfGroup = DFS(i, 0, cards, visited);
+            boxesOfGroups.push_back(boxesOfGroup);
+        }
     }
     
     sort(boxesOfGroups.begin(), boxesOfGroups.end(), greater<int>());
