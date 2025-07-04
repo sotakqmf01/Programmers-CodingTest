@@ -2,6 +2,7 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
+#include <limits.h>
 
 using namespace std;
 
@@ -119,56 +120,116 @@ using namespace std;
 //  - 100의 자리는 다이아의 수
 //  - 10의 자리는 철의 수
 //  - 1의 자리는 돌의 수
-int solution(vector<int> picks, vector<string> minerals)
-{
-    int ans = 0;
-    vector<int> v;
-    int sum = 111;
-    int k = 0;
-    int d = picks[0];
-    int i = picks[1];
-    int s = picks[2];
-    for(int i = 0; i < minerals.size(); i++)
-    {
-        if(minerals[i] == "diamond")
-            sum += 100;
-        else if(minerals[i] == "iron")
-            sum += 10;
-        else
-            sum += 1;
-        k++;
-        if(k == 5 || i >= minerals.size()-1)
-        {
-            v.push_back(sum);
-            sum = 111;
-            k = 0; 
+//int solution(vector<int> picks, vector<string> minerals)
+//{
+//    int ans = 0;
+//    vector<int> v;
+//    int sum = 111;
+//    int k = 0;
+//    int d = picks[0];
+//    int i = picks[1];
+//    int s = picks[2];
+//    for(int i = 0; i < minerals.size(); i++)
+//    {
+//        if(minerals[i] == "diamond")
+//            sum += 100;
+//        else if(minerals[i] == "iron")
+//            sum += 10;
+//        else
+//            sum += 1;
+//        k++;
+//        if(k == 5 || i >= minerals.size()-1)
+//        {
+//            v.push_back(sum);
+//            sum = 111;
+//            k = 0; 
+//        }
+//    }
+//    
+//    int totalPicks = picks[0] + picks[1] + picks[2];
+//    int requiredPicks = min(totalPicks, (int)v.size());
+//    
+//    sort(v.begin(), v.begin() + requiredPicks, greater<>());
+//    for(int temp : v)
+//    {
+//        if(d > 0)
+//        {
+//            string str = to_string(temp);
+//            ans += ((str[0] - '0' - 1) * 1 + (str[1] - '0' - 1) * 1 + (str[2] - '0' - 1) * 1);
+//            d--;
+//        }
+//        else if(i > 0)
+//        {
+//            string str = to_string(temp);
+//            ans += ((str[0] - '0' - 1) * 5 + (str[1] - '0' - 1) * 1 + (str[2] - '0' - 1) * 1);
+//            i--;
+//        }
+//        else if(s > 0)
+//        {
+//            string str = to_string(temp);
+//            ans += ((str[0] - '0' - 1) * 25 + (str[1] - '0' - 1) * 5 + (str[2] - '0' - 1) * 1);
+//            s--;
+//        }
+//    }
+//    return ans;
+//}
+
+
+// DFS + 백트래킹
+int minFatigue = INT_MAX;
+vector<vector<int>> fatigueTable = {
+    {1, 1, 1},     // 다이아 곡괭이
+    {5, 1, 1},     // 철 곡괭이
+    {25, 5, 1}     // 돌 곡괭이
+};
+
+void dfs(int blockIndex, int currentFatigue, vector<int>& picks, const vector<vector<int>>& MineralBlock){
+    if(blockIndex >= MineralBlock.size() || (picks[0] + picks[1] + picks[2] == 0)){
+        minFatigue = min(currentFatigue, minFatigue);
+        return;
+    }
+ 
+    // 가지치기
+    if(currentFatigue >= minFatigue)
+        return;
+    
+    for(int i = 0; i<picks.size(); i++){
+        if(picks[i] == 0)
+            continue;
+        
+        picks[i]--; // 백 트래킹
+        
+        int fatiguePerBlock = 0;
+        fatiguePerBlock += MineralBlock[blockIndex][0] * fatigueTable[i][0];
+        fatiguePerBlock += MineralBlock[blockIndex][1] * fatigueTable[i][1];
+        fatiguePerBlock += MineralBlock[blockIndex][2] * fatigueTable[i][2];
+        
+        dfs(blockIndex + 1, currentFatigue + fatiguePerBlock, picks, MineralBlock);
+        
+        picks[i]++; // 백 트래킹
+    }
+}
+
+int solution(vector<int> picks, vector<string> minerals) {
+    int answer = 0;
+    vector<vector<int>> MineralBlock;
+    
+    for(int i = 0; i < minerals.size(); i+=5){
+        int dia = 0;
+        int iron = 0;
+        int stone = 0;
+        for(int j = i; j < i+5 && j < minerals.size(); j++){
+            if(minerals[j] == "diamond")
+                dia++;
+            else if(minerals[j] == "iron")
+                iron++;
+            else
+                stone++;
         }
+        MineralBlock.push_back({dia, iron, stone});
     }
     
-    int totalPicks = picks[0] + picks[1] + picks[2];
-    int requiredPicks = min(totalPicks, (int)v.size());
-    
-    sort(v.begin(), v.begin() + requiredPicks, greater<>());
-    for(int temp : v)
-    {
-        if(d > 0)
-        {
-            string str = to_string(temp);
-            ans += ((str[0] - '0' - 1) * 1 + (str[1] - '0' - 1) * 1 + (str[2] - '0' - 1) * 1);
-            d--;
-        }
-        else if(i > 0)
-        {
-            string str = to_string(temp);
-            ans += ((str[0] - '0' - 1) * 5 + (str[1] - '0' - 1) * 1 + (str[2] - '0' - 1) * 1);
-            i--;
-        }
-        else if(s > 0)
-        {
-            string str = to_string(temp);
-            ans += ((str[0] - '0' - 1) * 25 + (str[1] - '0' - 1) * 5 + (str[2] - '0' - 1) * 1);
-            s--;
-        }
-    }
-    return ans;
+    dfs(0, 0, picks, MineralBlock);
+        
+    return minFatigue;
 }
