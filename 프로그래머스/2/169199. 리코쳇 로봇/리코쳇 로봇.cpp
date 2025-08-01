@@ -16,8 +16,8 @@ struct Pos{
 // 특정 위치에서 특정 방향으로 미끄러졌을 때 도착하는 지점의 좌표 반환
 // - direction : 0 = 상, 1 = 하, 2 = 좌, 3 = 우
 Pos slide(const vector<string>& board, Pos currentPos, int direction){
-    int dx[4] = {-1, 1, 0, 0};
-    int dy[4] = {0, 0, -1, 1};
+    static const int dx[4] = {-1, 1, 0, 0};
+    static const int dy[4] = {0, 0, -1, 1};
     
     Pos dst(currentPos.x, currentPos.y);
         
@@ -31,6 +31,24 @@ Pos slide(const vector<string>& board, Pos currentPos, int direction){
     
     return dst;
 }
+
+// ChatGPT의 slide 함수
+//Pos slide(const vector<string>& board, Pos curr, int dir) {
+//    int n = board.size();
+//    int m = board[0].size();
+//    
+//    while (true) {
+//        int nx = curr.x + dx[dir];
+//        int ny = curr.y + dy[dir];
+//        
+//        if (nx < 0 || ny < 0 || nx >= n || ny >= m) break;
+//        if (board[nx][ny] == 'D') break;
+//        
+//        curr.x = nx;
+//        curr.y = ny;
+//    }
+//    return curr;
+//}
           
 int solution(vector<string> board) {
     int answer = 0;
