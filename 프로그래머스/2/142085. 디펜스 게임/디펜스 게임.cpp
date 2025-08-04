@@ -20,6 +20,7 @@ int solution(int n, int k, vector<int> enemy) {
     //   - 해당 라운드를 맞닥뜨렸을 때가 [무적권]을 사용해야하는 시점
     // 2. [무적권] 사용 결정
     //   - [무적권]이 있는 경우, 가장 많은 적이 있는 라운드에서 사용
+    //   - 없으면, 마지막으로 진행한 라운드 롤백
     while(nextRound < enemy.size()){
         pq.push(enemy[nextRound]);
         n -= enemy[nextRound];
