@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#include <iostream>
 
 using namespace std;
 
@@ -29,7 +28,6 @@ double Integral(int a, int b, const vector<int>& hail){
         // 각 구간의 x값의 차이는 1
         area += abs(hail[i] - hail[i+1]) * 1 * 0.5 + min(hail[i], hail[i+1]) * 1;
     }
-    cout << "area :  " << area << endl;
     
     return area;
 }
