@@ -7,7 +7,7 @@ using namespace std;
 
 // 한 축만 포함하는 상태로 하나의 사분면에 속하는 좌표 개수에 x4를 하면, 총 좌표 개수 구할 수 있음
 // - (x > 0, y >= 0)인 구간에서 (r1)^2 <= x^2 + y^2 <= (r2)^2 를 만족하는 좌표를 구하면 됨
-//   - 위 구간에 해당하는 전체 좌표에 대해 조건을 만족하는지 일일이 확인하는 것은 너무 비효율적 O(n^2)
+//   - 위 구간에 해당하는 전체 좌표에 대해 조건을 만족하는지 일일이 확인하는 것은 너무 비효율적 O(n^2) = 최대 100만 * 100만 = 1조
 //   - x 좌표를 기준으로 
 //     - (r1)^2 <= x^2 + y^2 조건을 만족하는 y1
 //     - x^2 + y^2 <= (r2)^2 조건을 만족하는 y2를 구하면
@@ -16,11 +16,11 @@ long long solution(int r1, int r2) {
     long long answer = 0;
     
     for(int x = 1; x <= r2; x++){
-        //int min = (x <= r1 ? ceil(sqrt((long long)r1*r1 - x*x)) : 0);
-        //int max = floor(sqrt((long long)r2*r2 - x*x));
+        int min = (x <= r1 ? ceil(sqrt((long long)r1*r1 - (long long)x*x)) : 0);
+        int max = floor(sqrt((long long)r2*r2 - (long long)x*x));
         
-        int min = (x <= r1 ? ceil(sqrt(pow(r1, 2) - pow(x, 2))) : 0);
-        int max = floor(sqrt(pow(r2, 2) - pow(x, 2)));
+        //int min = (x <= r1 ? ceil(sqrt(pow(r1, 2) - pow(x, 2))) : 0);
+        //int max = floor(sqrt(pow(r2, 2) - pow(x, 2)));
         
         answer += max - min + 1;
     }
