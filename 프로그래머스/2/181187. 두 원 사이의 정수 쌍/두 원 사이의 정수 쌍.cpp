@@ -15,11 +15,14 @@ using namespace std;
 long long solution(int r1, int r2) {
     long long answer = 0;
     
-    for(long long x = 1; x <= r2; x++){
-        int min = (x <= r1 ? ceil(sqrt((long long)r1*r1 - x*x)) : 0);
-        int max = floor(sqrt((long long)r2*r2 - x*x));
+    for(int x = 1; x <= r2; x++){
+        //int min = (x <= r1 ? ceil(sqrt((long long)r1*r1 - x*x)) : 0);
+        //int max = floor(sqrt((long long)r2*r2 - x*x));
         
-        answer += (long long)max - min + 1;
+        int min = (x <= r1 ? ceil(sqrt(pow(r1, 2) - pow(x, 2))) : 0);
+        int max = floor(sqrt(pow(r2, 2) - pow(x, 2)));
+        
+        answer += max - min + 1;
     }
     
     return answer*4;
