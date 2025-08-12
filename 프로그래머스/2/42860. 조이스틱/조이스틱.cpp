@@ -16,6 +16,25 @@ using namespace std;
 //   - 2. 버전2 : 잠깐만, 아니면 그냥 A가 아닌 곳의 index를 저장해서 뭘 하는 방법도 있을 거 같은데
 //     - 2.1. 이 방식은 성능은 좋아도 좀 복잡할 듯
 //     - 2.2. 굳이 저장안하고, 오른쪽으로 순서대로 가면서 해도 될 듯
+
+// ★★★★ 가로 이동 횟수 ★★★★
+// 가로 이동은 0번 인덱스에서 시작하니까 왼쪽으로 갈 수도 있고, 오른쪽으로 갈 수도 있음
+// - 근데 연속된 'A'가 있는 경우 : ex) [BBAAAAB]
+//   - 1. 뚫고 간다 : 어느 방향으로든 쭉 갔을 때 이동 횟수는 (length-1)회가 됨 
+//   - 2. U턴한다.
+//     - a. 먼저 왼쪽으로 쭉 이동하는 경우 : 0 -> nextIndex -> 0 -> i
+//       - 0에서 nextIndex까지 이동 횟수 = length - nextIndex
+//       - nextIndex에서 0까지 이동 횟수 = length - nextIndex
+//       - 0에서 i까지 이동 횟수 = i
+//       - 총 : 2*(length - nextIndex) + i
+//     - b. 먼저 오른쪽으로 쭉 이동하는 경우 : 0 -> i -> 0 -> nextIndex
+//       - 0에서 i까지 이동 횟수 = i
+//       - i에서 0까지 이동 횟수 = i
+//       - 0에서 nextIndex까지 이동 횟수 = length - nextIndex
+//       - 총 : 2*i + (length - nextIndex)
+//     - c. a, b를 비교해서 더 작은 값 선택
+//       - 공통된 부분 i + (length - nextIndex)
+//       - 다른 부분에서 최솟값 min(i, (length - nextIndex))
 int solution(string name) {
     int answer = 0;
     int length = name.length();
@@ -34,23 +53,20 @@ int solution(string name) {
         while(nextIndex < length && name[nextIndex] == 'A')
             nextIndex++;
         
-        // 가로 이동은 0번 인덱스에서 시작하니까 왼쪽으로 갈 수도 있고, 오른쪽으로 갈 수도 있음
-        // - 어느 방향으로든 쭉 갔을 때 이동 횟수는 (length-1)회가 됨
-        // - 근데 연속된 'A'가 있는 경우
-        //   - 1. 뚫고 간다
-        //                      i    j     i    j        i  j            i    j
+        // [BBAABAAB]에서 i = 1인 경우의 예시
+        //   - 1. 뚫고 간다 : 어느 방향으로든 쭉 갔을 때 이동 횟수는 (length=8-1) = 7회
         //   - 2. U턴한다. ex) [BBAAAAB], [BBAAAABBBB], [BBAABAAAABBB], [BBAAAABAABBB]
         //     - a. 먼저 왼쪽으로 쭉 이동하는 경우
-        //       - 마지막 'A' 다음에 있는 문자까지(j) 가는 이동 횟수 = length - j
-        //       - 다시 오른쪽으로 와야하니까(U턴) = length - j
-        //       - 첫 'A' 전에 있는 문자까지(i) = i;
-        //       - [총 : 2*(length - j) + i]
+        //       - 마지막 'A' 다음에 있는 문자까지(j=4) 가는 이동 횟수 = length - j = 4회
+        //       - 다시 오른쪽으로 와야하니까(U턴) = length - j = 4회
+        //       - 첫 'A' 전에 있는 문자까지(i=1) = i = 1회
+        //       - [총 : 2*(length - j) + i] = 9회
         //     - b. 먼저 오른쪽으로 쭉 이동하는 경우
-        //       - 첫 'A' 전에 있는 문자까지(i) = i
-        //       - 다시 왼쪽으로 와야하니까(U턴) = i
-        //       - 마지막 'A' 다음에 있는 문자까지(j) = length - j
-        //       - 총 : 2*i + (length - j)
-        // => 총 2번의 비교가 필요
+        //       - 첫 'A' 전에 있는 문자까지(i=1) = i = 1회
+        //       - 다시 왼쪽으로 와야하니까(U턴) = i = 1회
+        //       - 마지막 'A' 다음에 있는 문자까지(j=4) = length - j = 4회
+        //       - 총 : 2*i + (length - j) = 6회
+        //   => 총 2번의 비교가 필요 2번 과정에서 비교, 여기서 나온 최솟값과 length-1과 비교
         int horizonCost = i + (length - nextIndex) + min(i, (length - nextIndex));
         minHorizon = min(minHorizon, horizonCost);
     }
