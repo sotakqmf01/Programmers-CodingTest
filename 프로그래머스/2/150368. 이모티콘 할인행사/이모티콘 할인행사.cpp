@@ -7,11 +7,13 @@ using namespace std;
 void CalculateUserPurchase(vector<int>& sales, const vector<vector<int>>& users, const vector<int>& emoticons, vector<int>& userPurchase){
     userPurchase = vector(users.size(), 0);
     
-    vector<int> discountedPrice(sales.size(), 0);   // 할인된 가격
+    // 할인된 이모티콘 가격
+    vector<int> discountedPrice(sales.size(), 0);
     for(int i = 0; i < sales.size(); i++){
         discountedPrice[i] = (emoticons[i] * (100 - sales[i])/100);
     }
     
+    // 유저별 총 구매액
     for(int i = 0; i < users.size(); i++){
         for(int j = 0; j < sales.size(); j++){
             if(sales[j] >= users[i][0]){
@@ -29,6 +31,7 @@ void CalculateUserPurchase(vector<int>& sales, const vector<vector<int>>& users,
 void CalculateResult(const vector<vector<int>>& users, const vector<int>& userPurchase, vector<int>& answer){
     vector<int> tempResult = {0, 0};
     
+    // 서비스 가입 판단
     for(int i = 0; i < users.size(); i++){
         if(userPurchase[i] >= users[i][1])
             tempResult[0]++;
@@ -56,6 +59,7 @@ void dfs(int depth, vector<int>& sales, const vector<vector<int>>& users, const 
     for(int i = 0; i < salePercent.size(); i++){
         sales[depth] = salePercent[i];
         
+        // ※이 부분을 Return 부분에 넣어도 됨
         if(depth == emoticons.size() - 1){
             CalculateUserPurchase(sales, users, emoticons, userPurchase);        
             CalculateResult(users, userPurchase, answer);
