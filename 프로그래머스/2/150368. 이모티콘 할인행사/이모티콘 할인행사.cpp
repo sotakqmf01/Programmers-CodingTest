@@ -80,7 +80,7 @@ vector<int> solution(vector<vector<int>> users, vector<int> emoticons) {
 //int max_user = -1;
 //int max_value = -1;
 //int discounts[7];
-//vector<int> answer(2, 0);
+//vector<int> answer(2, 0);     // vector<int> answer = {2, 0}이 아님;; 헷갈리지마셈
 //
 //void getComb(int pos, vector<vector<int>> &users, vector<int> &emoticons) {
 //    if (pos == emoticons.size()) {
@@ -98,6 +98,7 @@ vector<int> solution(vector<vector<int>> users, vector<int> emoticons) {
 //            else total_price += tmp;
 //        }
 //
+//        // ★vector의 비교는 string처럼 앞 원소부터 사전 순으로 비교해감
 //        answer = max(answer, {total_user, total_price});
 //        return;
 //    }
