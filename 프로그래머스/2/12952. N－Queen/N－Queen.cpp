@@ -74,9 +74,9 @@ int solution(int n) {
 //int solution(int n) {
 //    int answer = 0;
 //    vector<bool> column(n, false);
-//    // n*n 배열에서 생길 수 있는 대각선의 개수는 2n + 1개
-//    vector<bool> diagonal_right(2*n + 1, false);    // row - col
-//    vector<bool> diagonal_left(2*n + 1, false);     // row + col
+//    // n*n 배열에서 생길 수 있는 대각선의 개수는 2n - 1개
+//    vector<bool> diagonal_right(2*n - 1, false);    // row - col
+//    vector<bool> diagonal_left(2*n - 1, false);     // row + col
 //    
 //    dfs(0, n, column, diagonal_right, diagonal_left, answer);
 //    
