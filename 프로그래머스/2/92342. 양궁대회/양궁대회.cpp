@@ -59,6 +59,10 @@ void dfs(int depth, int n, const vector<int>& info, vector<int>& answer, vector<
         return;
     }
     
+    // 가지치기
+    // - 1. 화살 분배할 때 하나하나씩이 아니라 0 or 어피치 개수+1 이 두 가지로
+    // - 2. 남은 화살로 아무리 잘 쏴도 어피치를 이기지 못하는 경우 Pass
+    
     for(int i = 0; i <= n; i++){
         // ★백트래킹 - 분배형
         temp[depth] = i;
@@ -132,7 +136,11 @@ vector<int> solution(int n, vector<int> info) {
 //        }
 //    }
 //
-//    vector<int> counts(11, 0);
+//    vector<int> counts(11, 0);    // 라이언이 쏜 화살
+//
+//    // ★★ sum : 현재 분기에서의 스윙 누적 값
+//    // - ★★ 최종 점수 차 = (sum - apeach)
+//    // - 라이언이 쐈을 때, 화살 개수 비교 후 스윙 누적
 //    function<void(int, int, int)> dfs = 
 //        [&](int idx, int rest, int sum) {
 //            if (0 == rest){
@@ -145,27 +153,35 @@ vector<int> solution(int n, vector<int> info) {
 //                }
 //                return;
 //            }
-//    
+//      
+//            // ★★ promising : 남은 칸에서 [남은 화살]로 얻을 수 있는 점수 차의 최대치
+//            // - [(10 - idx) * (11 - idx) / 2] = k, k-1, k-2, ... , 1, 0 의 합
+//            // - [* 2] = 스윙 최대치로 가정
 //            int promising = (10 - idx) * (11 - idx) / 2 * 2;
 //            if (0 < 10 - idx - rest){
+//                // [남은 화살]로 얻을 수 있는 최대 점수 구하기
+//                // - [7,6,5,4,3,2,1,0] 남았고 3발 남았을 때
+//                //   - [(7,6,5),{4,3,2,1}], (7,6,5)를 구하기 위해 전체에서 {4,3,2,1}을 빼는 것
 //                promising -= (10 - idx - rest) * (11 - idx - rest) / 2 * 2;
 //            }
+//            // sum + promising = 총 스윙 누적 값 
 //            if (sum + promising <= apeach || sum + promising < ryan){
 //                return;
 //            }
 //    
+//            // 이기는 경우의 dfs
 //            if (10 > idx && 0 < rest - info[idx]){
 //                counts[idx] = info[idx] + 1;
 //                int tmp = 1 < counts[idx] ? sum + (10 - idx) * 2 : sum + (10 - idx);
 //                dfs(idx + 1, rest - counts[idx], tmp);
 //            }
-//    
 //            if (10 == idx){
 //                counts[idx] = rest;
 //            }
 //            else{
 //                counts[idx] = 0;
 //            }
+//            // 지는 경우의 dfs
 //            dfs(idx + 1, rest - counts[idx], sum);
 //            counts[idx] = 0;
 //        };
