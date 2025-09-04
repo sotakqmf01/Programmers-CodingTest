@@ -79,7 +79,7 @@ vector<int> solution(int n, vector<int> info) {
     return answer;
 }
 
-// 다른 사람 풀이
+// 다른 사람 풀이1
 //int N, ans;
 //vector<int> answer;
 //int a[11];
@@ -119,7 +119,7 @@ vector<int> solution(int n, vector<int> info) {
 //    return answer;
 //}
 
-// 질문하기 - 다른 사람 풀이
+// 질문하기 - 다른 사람 풀이2
 //#include <functional>
 //
 //vector<int> solution(int n, vector<int> info) {
