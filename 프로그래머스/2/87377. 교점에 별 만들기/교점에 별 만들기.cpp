@@ -47,7 +47,7 @@ vector<string> solution(vector<vector<int>> line) {
     }
     
     // 사각형 그리기    
-    answer = vector<string>(maxY - minY + 1, string(maxX - minX + 1, '.'));
+    answer.assign(maxY - minY + 1, string(maxX - minX + 1, '.'));
     
     // (좌표 -> 배열 인덱스) 변환
     for(const pair<long long, long long>& point : intersectionPoints){
