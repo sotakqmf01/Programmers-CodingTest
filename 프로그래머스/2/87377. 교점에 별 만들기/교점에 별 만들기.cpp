@@ -26,8 +26,8 @@ vector<string> solution(vector<vector<int>> line) {
             
             long long denominator = A*D - B*C;
             if(denominator != 0){
-                double x = (double)(B*F - E*D) / (A*D - B*C);
-                double y = (double)(E*C - A*F) / (A*D - B*C);
+                double x = (double)(B*F - E*D) / denominator;
+                double y = (double)(E*C - A*F) / denominator;
                 
                 // 정수 좌표
                 if((B*F - E*D) % denominator == 0 && (E*C - A*F) % denominator == 0){
