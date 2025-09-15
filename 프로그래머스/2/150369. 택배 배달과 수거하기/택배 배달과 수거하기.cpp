@@ -4,7 +4,7 @@
 using namespace std;
 
 // solution을 재귀로 돌리면 벡터의 복사가 일어나서 시간이 너무 오래 걸림
-// => 따로 빼서 참조로 받음 => 18~20은 통과 / 16,17 시간 초과
+// => 따로 빼서 참조로 받음 => 18~20 통과 / 16,17 시간 초과
 long long recursive(int cap, int n, vector<int>& deliveries, vector<int>& pickups){
     long long total = 0;
     
@@ -75,7 +75,8 @@ long long recursive(int cap, int n, vector<int>& deliveries, vector<int>& pickup
     
     // n을 다음으로 방문할 가장 먼 집으로 사용
     // - 그렇다고 n을 무조건 들려야하는 건 아닐 수 있음
-    //   - n을 줄이는 부분에 문제가 있음 => 매번 가장 오른쪽을 찾음 => 이걸 다음에 넘겨줌
+    //   - n을 줄이는 부분에 문제가 있음 => 매번 가장 오른쪽을 찾음 => 이걸 다음에 넘겨줌 => farthest 찾을 때 좀 더 최적화
+    //   - => 16,17 통과
     return total + recursive(cap, distance, deliveries, pickups);
 }
 
