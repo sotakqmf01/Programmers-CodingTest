@@ -50,10 +50,10 @@ void CantorLike(long long index, int n, long long& count){
         return;
     }
     
-    long long part = index / (long long)pow(5, n-1);         // 몫 : 실제 현재 구간 = part + 1 (5는 그냥 5)
+    long long part = index / pow(5, n-1);                    // 몫 : 실제 현재 구간 = part + 1 (5는 그냥 5)
     long long nextIndex = index % (long long)pow(5, n-1);    // 나머지 : 현재 구간에서의 index
     
-    count += (part >= 3) ? (part - 1) * (long long)pow(4, n-1) : part * (long long)pow(4, n-1);
+    count += (part >= 3) ? (part - 1) * pow(4, n-1) : part * pow(4, n-1);
     
     if(part == 2)
         return;
