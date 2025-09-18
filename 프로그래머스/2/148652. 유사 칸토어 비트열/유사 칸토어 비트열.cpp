@@ -32,15 +32,6 @@ using namespace std;
 //    return answer;
 //}
 
-// 참고하기 좋은 블로그
-// https://keepgoing0328.tistory.com/entry/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EC%9E%90%EB%B0%94-%EC%9C%A0%EC%82%AC-%EC%B9%B8%ED%86%A0%EC%96%B4-%EB%B9%84%ED%8A%B8%EC%97%B4
-// https://codingjj.tistory.com/209
-// https://kne-coding.tistory.com/331
-// https://moneygear.tistory.com/4
-// https://moneygear.tistory.com/4#google_vignette
-// https://sound-programming.tistory.com/203
-
-
 // 분할 정복 + 재귀 + 수학적 풀이
 void CantorLike(long long index, int n, long long& count){
     if(index <= 0)
@@ -70,3 +61,11 @@ int solution(int n, long long l, long long r){
     
     return rCount - lCount;
 }
+
+// 참고하기 좋은 블로그
+// https://keepgoing0328.tistory.com/entry/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EC%9E%90%EB%B0%94-%EC%9C%A0%EC%82%AC-%EC%B9%B8%ED%86%A0%EC%96%B4-%EB%B9%84%ED%8A%B8%EC%97%B4
+// https://codingjj.tistory.com/209
+// https://kne-coding.tistory.com/331
+// https://moneygear.tistory.com/4
+// https://moneygear.tistory.com/4#google_vignette
+// https://sound-programming.tistory.com/203
