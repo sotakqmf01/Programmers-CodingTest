@@ -21,6 +21,12 @@ int CalculateCycle(int row, int col, int dir, vector<vector<vector<bool>>>& visi
         
         row = (row + dx[dir] + (int)grid.size()) % (int)grid.size();
         col = (col + dy[dir] + (int)grid[0].size()) % (int)grid[0].size(); 
+        
+        // dir과 row(col)를 index에 맞게 래핑하는 수식은 같음
+        // - row = (row + delta + (row + delta에 더했을 때 0보다 커질 수 있는 전체 크기(grid.size())의 배수)) % 전체 크기
+        //  - L : dir = (dir + delta(-1) + 전체 크기(4)) % 4
+        //  - R : dir = (dir + delta(+1) + 전체 크기(4)) % 4
+        //    - R에서 전체 크기(4)는 분배 법칙에 의해 사라짐 => (dir + delta(+1)) % 4 
     }
     
     return cycleLength;
