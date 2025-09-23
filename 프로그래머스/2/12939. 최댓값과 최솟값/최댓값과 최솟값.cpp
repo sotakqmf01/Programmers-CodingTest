@@ -38,6 +38,7 @@ using namespace std;
 //    return answer;
 //}
 
+// 1. istringstream 사용
 //string solution(string s){
 //    string answer = "";
 //    long long minValue = LLONG_MAX;
@@ -56,19 +57,42 @@ using namespace std;
 //    return answer;
 //}
 
+// 2. istringstream + getline()
+//string solution(string s){
+//    string answer = "";
+//    long long minValue = LLONG_MAX;
+//    long long maxValue = LLONG_MIN;
+//    
+//    istringstream iss(s);
+//    string numStr;
+//    long long num;
+//    
+//    while(getline(iss, numStr, ' ')){
+//        num = stoll(numStr);
+//        minValue = min(minValue, num);
+//        maxValue = max(maxValue, num);
+//    }
+//    
+//    answer = to_string(minValue) + " " + to_string(maxValue);
+//    
+//    return answer;
+//}
+
+// 3. stoll() + substr()
 string solution(string s){
     string answer = "";
     long long minValue = LLONG_MAX;
     long long maxValue = LLONG_MIN;
     
-    istringstream iss(s);
-    string numStr;
     long long num;
+    string::size_type sz;
     
-    while(getline(iss, numStr, ' ')){
-        num = stoll(numStr);
+    while(!s.empty()){
+        num = stoll(s, &sz);
         minValue = min(minValue, num);
         maxValue = max(maxValue, num);
+        
+        s = s.substr(sz);
     }
     
     answer = to_string(minValue) + " " + to_string(maxValue);
