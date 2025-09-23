@@ -88,10 +88,12 @@ string solution(string s){
     string::size_type sz;
     
     while(!s.empty()){
+        // stoll()에 사용되는 strtol()은 문자를 만나기 전까지 만난 공백을 지움
         num = stoll(s, &sz);
         minValue = min(minValue, num);
         maxValue = max(maxValue, num);
         
+        // 마지막에는 문자열의 길이와 sz의 값이 같기 때문에 빈 문자열 반환
         s = s.substr(sz);
     }
     
