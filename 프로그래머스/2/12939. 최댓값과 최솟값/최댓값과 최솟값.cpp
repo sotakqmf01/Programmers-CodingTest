@@ -6,38 +6,6 @@
 
 using namespace std;
 
-//string solution(string s) {
-//    string answer = "";
-//    //string numStr;
-//    long long num = 0;
-//    long long min = LLONG_MAX;
-//    long long max = LLONG_MIN;
-//    //string::size_type sz;
-//    
-//    istringstream iss(s);
-//
-//    //while(getline(iss, numStr, ' '))
-//    while(iss >> num)
-//    {
-//        //num = stoll(numStr);
-//        min = num < min ? num : min;
-//        max = num > max ? num : max;
-//    }
-//    
-//    //while(!s.empty())
-//    //{
-//    //    num = stoll(s, &sz);
-//    //    min = num < min ? num : min;
-//    //    max = num > max ? num : max;
-//    //    if(s.length() > sz) s = s.substr(sz);
-//    //    else s = "";        
-//    //}
-//    
-//    answer = to_string(min) + " " + to_string(max);
-//    
-//    return answer;
-//}
-
 // 1. istringstream 사용
 //string solution(string s){
 //    string answer = "";
@@ -56,8 +24,8 @@ using namespace std;
 //    
 //    return answer;
 //}
-
-// 2. istringstream + getline()
+//
+//// 2. istringstream + getline()
 //string solution(string s){
 //    string answer = "";
 //    long long minValue = LLONG_MAX;
@@ -77,24 +45,50 @@ using namespace std;
 //    
 //    return answer;
 //}
+//
+//// 3. stoll() + substr()
+//string solution(string s){
+//    string answer = "";
+//    long long minValue = LLONG_MAX;
+//    long long maxValue = LLONG_MIN;
+//    
+//    long long num;
+//    string::size_type sz;
+//    
+//    while(!s.empty()){
+//        // stoll()에 사용되는 strtol()은 문자를 만나기 전까지 만난 공백을 지움
+//        num = stoll(s, &sz);
+//        minValue = min(minValue, num);
+//        maxValue = max(maxValue, num);
+//        
+//        // 마지막에는 문자열의 길이와 sz의 값이 같기 때문에 빈 문자열 반환
+//        s = s.substr(sz);
+//    }
+//    
+//    answer = to_string(minValue) + " " + to_string(maxValue);
+//    
+//    return answer;
+//}
 
-// 3. stoll() + substr()
+// 4. string::find() + stoll() + substr()
 string solution(string s){
     string answer = "";
     long long minValue = LLONG_MAX;
     long long maxValue = LLONG_MIN;
     
     long long num;
-    string::size_type sz;
-    
-    while(!s.empty()){
-        // stoll()에 사용되는 strtol()은 문자를 만나기 전까지 만난 공백을 지움
-        num = stoll(s, &sz);
+    size_t start = 0, end;
+    while(1){
+        end = s.find(' ', start);
+        num = stoll(s.substr(start, end - start));
+        
         minValue = min(minValue, num);
         maxValue = max(maxValue, num);
         
-        // 마지막에는 문자열의 길이와 sz의 값이 같기 때문에 빈 문자열 반환
-        s = s.substr(sz);
+        start = end + 1;
+        
+        if(end == string::npos)
+            break;
     }
     
     answer = to_string(minValue) + " " + to_string(maxValue);
