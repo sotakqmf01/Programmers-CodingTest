@@ -3,49 +3,49 @@
 
 using namespace std;
 
-//string solution(string s) {
-//    string answer = "";
-//    string Word = "";
-//    
-//    // 다른 사람 풀이 보기
-//    for(char c : s)
-//    {
-//        if(c == ' ')
-//        {
-//            if(!Word.empty())
-//            {
-//                Word[0] = toupper(Word[0]);
-//                answer += Word;
-//                Word = "";
-//            }
-//            answer += c;
-//        }
-//        else
-//        {
-//            Word += tolower(c);
-//        }
-//    }
-//    
-//    if(!Word.empty())
-//    {
-//        Word[0] = toupper(Word[0]);
-//        answer += Word;
-//        Word = "";
-//    }
-//        
-//    return answer;
-//}
-
 string solution(string s) {
     string answer = "";
+    string Word = "";
     
-    answer += toupper(s[0]);
-    for(int i = 1; i < s.length(); i++){
-        if(s[i-1] == ' ')
-            answer += toupper(s[i]);
+    for(char c : s)
+    {
+        if(c == ' ')
+        {
+            if(!Word.empty())
+            {
+                Word[0] = toupper(Word[0]);
+                answer += Word;
+                Word = "";
+            }
+            answer += c;
+        }
         else
-            answer += tolower(s[i]);
+        {
+            Word += tolower(c);
+        }
     }
     
+    if(!Word.empty())
+    {
+        Word[0] = toupper(Word[0]);
+        answer += Word;
+        Word = "";
+    }
+        
     return answer;
 }
+
+// 다른 사람 풀이
+//string solution(string s) {
+//    string answer = "";
+//    
+//    answer += toupper(s[0]);
+//    for(int i = 1; i < s.length(); i++){
+//        if(s[i-1] == ' ')
+//            answer += toupper(s[i]);
+//        else
+//            answer += tolower(s[i]);
+//    }
+//    
+//    return answer;
+//}
