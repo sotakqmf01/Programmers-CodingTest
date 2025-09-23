@@ -7,25 +7,25 @@
 using namespace std;
 
 // 1. istringstream 사용
-//string solution(string s){
-//    string answer = "";
-//    long long minValue = LLONG_MAX;
-//    long long maxValue = LLONG_MIN;
-//    
-//    istringstream iss(s);
-//    long long num;
-//    
-//    while(iss >> num){
-//        minValue = min(minValue, num);
-//        maxValue = max(maxValue, num);
-//    }
-//    
-//    answer = to_string(minValue) + " " + to_string(maxValue);
-//    
-//    return answer;
-//}
-//
-//// 2. istringstream + getline()
+string solution(string s){
+    string answer = "";
+    long long minValue = LLONG_MAX;
+    long long maxValue = LLONG_MIN;
+    
+    istringstream iss(s);
+    long long num;
+    
+    while(iss >> num){
+        minValue = min(minValue, num);
+        maxValue = max(maxValue, num);
+    }
+    
+    answer = to_string(minValue) + " " + to_string(maxValue);
+    
+    return answer;
+}
+
+// 2. istringstream + getline()
 //string solution(string s){
 //    string answer = "";
 //    long long minValue = LLONG_MAX;
@@ -45,8 +45,8 @@ using namespace std;
 //    
 //    return answer;
 //}
-//
-//// 3. stoll() + substr()
+
+// 3. stoll() + substr()
 //string solution(string s){
 //    string answer = "";
 //    long long minValue = LLONG_MAX;
@@ -71,27 +71,27 @@ using namespace std;
 //}
 
 // 4. string::find() + stoll() + substr()
-string solution(string s){
-    string answer = "";
-    long long minValue = LLONG_MAX;
-    long long maxValue = LLONG_MIN;
-    
-    long long num;
-    size_t start = 0, end;
-    while(1){
-        end = s.find(' ', start);
-        num = stoll(s.substr(start, end - start));
-        
-        minValue = min(minValue, num);
-        maxValue = max(maxValue, num);
-        
-        start = end + 1;
-        
-        if(end == string::npos)
-            break;
-    }
-    
-    answer = to_string(minValue) + " " + to_string(maxValue);
-    
-    return answer;
-}
+//string solution(string s){
+//    string answer = "";
+//    long long minValue = LLONG_MAX;
+//    long long maxValue = LLONG_MIN;
+//    
+//    long long num;
+//    size_t start = 0, end;
+//    while(1){
+//        end = s.find(' ', start);
+//        num = stoll(s.substr(start, end - start));
+//        
+//        minValue = min(minValue, num);
+//        maxValue = max(maxValue, num);
+//        
+//        start = end + 1;
+//        
+//        if(end == string::npos)
+//            break;
+//    }
+//    
+//    answer = to_string(minValue) + " " + to_string(maxValue);
+//    
+//    return answer;
+//}
