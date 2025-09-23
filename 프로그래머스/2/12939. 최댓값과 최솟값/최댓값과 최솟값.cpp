@@ -38,15 +38,35 @@ using namespace std;
 //    return answer;
 //}
 
+//string solution(string s){
+//    string answer = "";
+//    long long minValue = LLONG_MAX;
+//    long long maxValue = LLONG_MIN;
+//    
+//    istringstream iss(s);
+//    long long num;
+//    
+//    while(iss >> num){
+//        minValue = min(minValue, num);
+//        maxValue = max(maxValue, num);
+//    }
+//    
+//    answer = to_string(minValue) + " " + to_string(maxValue);
+//    
+//    return answer;
+//}
+
 string solution(string s){
     string answer = "";
     long long minValue = LLONG_MAX;
     long long maxValue = LLONG_MIN;
     
     istringstream iss(s);
+    string numStr;
     long long num;
     
-    while(iss >> num){
+    while(getline(iss, numStr, ' ')){
+        num = stoll(numStr);
         minValue = min(minValue, num);
         maxValue = max(maxValue, num);
     }
