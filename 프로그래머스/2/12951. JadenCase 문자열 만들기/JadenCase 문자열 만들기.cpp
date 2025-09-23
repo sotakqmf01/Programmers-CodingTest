@@ -36,25 +36,16 @@ using namespace std;
 //    return answer;
 //}
 
-
 string solution(string s) {
     string answer = "";
-    string word = "";
     
-    for(char c : s){
-        if(c != ' '){
-            word += tolower(c);
-        }
-        else{
-            word[0] = toupper(word[0]);
-            answer += word;
-            word = "";
-            answer += c;
-        }
+    answer += toupper(s[0]);
+    for(int i = 1; i < s.length(); i++){
+        if(s[i-1] == ' ')
+            answer += toupper(s[i]);
+        else
+            answer += tolower(s[i]);
     }
-    
-    word[0] = toupper(word[0]);
-    answer += word;
     
     return answer;
 }
