@@ -3,12 +3,23 @@
 
 using namespace std;
 
-vector<int> solution(long long n) {
+//vector<int> solution(long long n) {
+//    vector<int> answer;
+//    
+//    while(n>0){
+//        answer.push_back(n%10);
+//        n = n/10;
+//    }
+//    
+//    return answer;
+//}
+
+vector<int> solution(long long n){
     vector<int> answer;
     
-    while(n>0){
-        answer.push_back(n%10);
-        n = n/10;
+    while(n > 0){
+        answer.emplace_back(n % 10);
+        n /= 10;
     }
     
     return answer;
