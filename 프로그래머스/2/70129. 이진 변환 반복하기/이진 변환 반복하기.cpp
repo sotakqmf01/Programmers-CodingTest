@@ -55,10 +55,12 @@ vector<int> solution(string s) {
 //    int zero = 0;
 //    
 //    while(x != "1"){
+//        // 실제로 0을 지울 필요 없음
+//        // - 0을 지웠을 때의 길이만 구하면 됨
 //        int currentZero = count(x.begin(), x.end(), '0');
-//        zero += currentZero;
-//        
+//        zero += currentZero;    
 //        int length = x.length() - currentZero;
+//
 //        x.clear();
 //        while(length > 0){
 //            x += to_string(length % 2);
