@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <map>
+#include <algorithm>
 
 using namespace std;
 
@@ -46,25 +47,48 @@ using namespace std;
 //}
 
 
+// map + priority_queue
+//int solution(int k, vector<int> tangerine){
+//    int answer = 0;
+//    
+//    map<int, int> countBySize;
+//    priority_queue<int> pqForCount;
+//    
+//    for(const int& size : tangerine){
+//        countBySize[size]++;
+//    }
+//    
+//    for(const pair<int, int>& count : countBySize){
+//        pqForCount.push(count.second);
+//    }
+//    
+//    int total = 0;
+//    while(total < k){
+//        total += pqForCount.top();
+//        pqForCount.pop();
+//        
+//        answer++;
+//    }
+//    
+//    return answer;
+//}
+
+// 다른 사람 풀이 : vector만 사용
 int solution(int k, vector<int> tangerine){
     int answer = 0;
     
-    map<int, int> countByType;
-    priority_queue<int> pqForCount;
+    int maxSize = *max_element(tangerine.begin(), tangerine.end());
+    vector<int> countBySize(maxSize + 1, 0);
     
     for(const int& size : tangerine){
-        countByType[size]++;
+        countBySize[size]++;
     }
     
-    for(const pair<int, int>& count : countByType){
-        pqForCount.push(count.second);
-    }
+    sort(countBySize.begin(), countBySize.end(), greater<int>());
     
     int total = 0;
     while(total < k){
-        total += pqForCount.top();
-        pqForCount.pop();
-        
+        total += countBySize[answer];
         answer++;
     }
     
