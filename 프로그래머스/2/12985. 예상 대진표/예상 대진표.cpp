@@ -27,16 +27,30 @@ using namespace std;
 //}
 
 
-int solution(int n, int a, int b){
-    int answer = 1;
+//int solution(int n, int a, int b){
+//    int answer = 1;
+//
+//    while(1){
+//        a = (a - 1) / 2 + 1;
+//        b = (b - 1) / 2 + 1;
+//        
+//        // 서로 붙게 된다면, 둘 중 이겼을 때 다음 번호는 같음
+//        if(a == b)
+//            break;
+//        
+//        answer++;
+//    }
+//    
+//    return answer;
+//}
 
-    while(1){
-        a = (a - 1) / 2 + 1;
-        b = (b - 1) / 2 + 1;
-        
-        // 서로 붙게 된다면, 둘 중 이겼을 때 다음 번호는 같음
-        if(a == b)
-            break;
+// 비트 연산 사용
+int solution(int n, int a, int b){
+    int answer = 0;
+    
+    while(a != b){
+        a = (a + 1) >> 1;
+        b = (b + 1) >> 1;
         
         answer++;
     }
