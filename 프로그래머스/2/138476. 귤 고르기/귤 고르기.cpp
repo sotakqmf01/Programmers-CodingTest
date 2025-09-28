@@ -73,6 +73,7 @@ using namespace std;
 //    return answer;
 //}
 
+// unordered_map + priority_queue
 int solution(int k, vector<int> tangerine){
     int answer = 0;
     
@@ -99,6 +100,8 @@ int solution(int k, vector<int> tangerine){
 }
 
 // 다른 사람 풀이 : vector만 사용
+// - max_element의 값에 따라 벡터의 크기가 달라짐
+// - 사이즈가 1, 2, 1천만 이렇게 3개 있으면, coutBySize 배열의 크기는 1천만+1 => 때에 따라 비효율적일 수 있음
 //int solution(int k, vector<int> tangerine){
 //    int answer = 0;
 //    
