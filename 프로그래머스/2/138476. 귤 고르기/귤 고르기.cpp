@@ -48,10 +48,35 @@ using namespace std;
 
 
 // map + priority_queue
+//int solution(int k, vector<int> tangerine){
+//    int answer = 0;
+//    
+//    map<int, int> countBySize;
+//    priority_queue<int> pqForCount;
+//    
+//    for(const int& size : tangerine){
+//        countBySize[size]++;
+//    }
+//    
+//    for(const pair<int, int>& count : countBySize){
+//        pqForCount.push(count.second);
+//    }
+//    
+//    int total = 0;
+//    while(total < k){
+//        total += pqForCount.top();
+//        pqForCount.pop();
+//        
+//        answer++;
+//    }
+//    
+//    return answer;
+//}
+
 int solution(int k, vector<int> tangerine){
     int answer = 0;
     
-    map<int, int> countBySize;
+    unordered_map<int, int> countBySize;
     priority_queue<int> pqForCount;
     
     for(const int& size : tangerine){
