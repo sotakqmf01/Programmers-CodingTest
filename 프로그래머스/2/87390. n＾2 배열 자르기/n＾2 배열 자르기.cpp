@@ -33,8 +33,7 @@ vector<int> solution(int n, long long left, long long right){
     vector<int> answer;
     
     for(long long i = left; i <= right; i++){
-        int value = (i / n) > (i % n) ? (i / n) + 1 : (i % n) + 1;
-        answer.push_back(value);
+        answer.push_back(max(i / n, i % n) + 1);
     }
     
     return answer;
