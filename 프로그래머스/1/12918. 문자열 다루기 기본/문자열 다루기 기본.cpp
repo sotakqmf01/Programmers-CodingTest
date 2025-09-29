@@ -25,10 +25,10 @@ bool solution(string s){
     if(length != 4 && length != 6)
         return false;
     
-    for(int i = 0; i < length; i++){
-        if(!isdigit(s[i]))
-            return false;
-    }
+   for(const char& c : s){
+       if(!isdigit(c))
+           return false;
+   }
     
     return true;
     
