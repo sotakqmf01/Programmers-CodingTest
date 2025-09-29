@@ -35,13 +35,14 @@ int solution(vector<int> citations) {
     return answer;
 }
 
- // n편 중 h번 이상 인용된 논문이 h편 이상인 h의 최댓값
+
 //int solution(vector<int> citations){
 //    int answer = 0;
 //    int n = citations.size();
 //    
 //    sort(citations.rbegin(), citations.rend());
 //    
+//    // 해당 for문이 뭐가 문제인지 생각해보기
 //    for(int i = 0; i < n; i++){
 //        if(citations[i] < (i + 1)){
 //            answer = i;
