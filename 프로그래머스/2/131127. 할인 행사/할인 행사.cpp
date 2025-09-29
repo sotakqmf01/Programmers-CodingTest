@@ -86,6 +86,7 @@ int solution(vector<string> want, vector<int> number, vector<string> discount){
             answer++;
         
         // 다음날 계산
+        // - 마지막 날은 다음 날 계산하면 안됨
         if(i == discount.size() - 1)
             break;
         
